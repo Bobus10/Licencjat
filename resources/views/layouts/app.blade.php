@@ -14,6 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body>
@@ -82,7 +83,7 @@
         {{-- <script src="public/assets/jquery.js"></script> --}}
         <script type="text/javascript">
             @yield('javascript')
-
+            @yield('js-files')
         </script>
 </body>
 </html>
