@@ -21,7 +21,11 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->surname }}</td>
                         <td>{{ $user->phone_number }}</td>
-                        <td><button class="btn btn-danger btn-sm delete" data-id="{{ $user->id }}"> X </button> </td>
+                        <td>
+                            <a data-id="{{ route('users.destroy', $user->id) }}" class="float-right">
+                                <button type="button" class="btn btn-danger delete"> X </button>
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -32,6 +36,7 @@
 @section('javascript')
     const deleteUrl = "{{ url('users') }}/";
 @endsection
-@section('js-files')
+@vite(['resources/js/delete.js']);
+{{-- @section('js-files')
     <script src="{{ asset('js/delete.js') }}"></script>
-@endsection
+@endsection --}}
