@@ -22,8 +22,8 @@
                         <td>{{ $user->surname }}</td>
                         <td>{{ $user->phone_number }}</td>
                         <td>
-                            <a data-id="{{ route('users.destroy', $user->id) }}" class="float-right">
-                                <button type="button" class="btn btn-danger delete"> X </button>
+                            <a class="float-right">
+                                <button data-id="{{ $user->id }}" type="button" class="btn btn-danger delete"> X </button>
                             </a>
                         </td>
                     </tr>

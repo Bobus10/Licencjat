@@ -6,14 +6,13 @@ use Exception;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
         return view('products.index',[
             'products' => Product::paginate(10)
@@ -36,6 +35,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product($request->all());
+        if($request->hasFile('image')){
+            $product->image_path = $request->file('image')->store('products');
+        }
         $product->save();
         return redirect(route('products.index'));
     }
@@ -66,6 +68,9 @@ class ProductController extends Controller
     public function update(Request $request, Product $product): RedirectResponse
     {
         $product->fill($request->all());
+        if($request->hasFile('image')){
+            $product->image_path = $request->file('image')->store('products');
+        }
         $product->save();
         return redirect(route('products.index'));
     }

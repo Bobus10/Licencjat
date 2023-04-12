@@ -44,6 +44,23 @@
 
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="image"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Zdjecie') }}</label>
+
+                            <div class="col-md-6">
+                                @if(!is_null($products->image_path))
+                                        <img src="{{ asset('storage/' . $products->image_path) }}"
+                                        class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                                        @else
+                                        <img src="https://via.placeholder.com/240x240/5fa9f8/efefef"
+                                            class="img-fluid mx-auto d-block" alt="Card image cap">
+                                        @endif
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
