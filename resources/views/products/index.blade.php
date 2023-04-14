@@ -1,0 +1,58 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1>Lista produktów</h1>
+            </div>
+            <div class="col-6 float-right">
+                <a  href="{{ route('products.create') }}" class="float-right">
+                    <button type="button" class="btn btn-primary">Dodaj</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nazwa</th>
+                        <th scope="col">Opis</th>
+                        <th scope="col">ilość</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col">Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                        <tr>
+                            <th scope="row">{{ $product->id }}</th>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->amount }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>
+                                <a href="{{ route('products.show', $product->id) }}" class="float-right">
+                                    <button type="button" class="btn btn-success"> P </button>
+                                </a>
+                                <a href="{{ route('products.edit', $product->id) }}" class="float-right">
+                                    <button type="button" class="btn btn-primary"> E </button>
+                                </a>
+                                <a class="float-right">
+                                    <button data-id="{{ $product->id }}" type="button" class="btn btn-danger delete"> X </button>
+                                </a>
+                                {{-- <button class="btn btn-danger btn-sm delete " data-id="{{ $product->id }}"> X </button> --}}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{ $products->links() }}
+        </div>
+    </div>
+@endsection
+@section('javascript')
+    const deleteUrl = "{{ url('products') }}/";
+@endsection
+@vite(['resources/js/delete.js']);
