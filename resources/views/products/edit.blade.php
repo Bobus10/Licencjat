@@ -34,7 +34,7 @@
 
                                 <div class="col-md-6">
                                     <textarea id="description" maxlength="1500" class="form-control @error('description') is-invalid @enderror"
-                                        name="description" autofocus>{{ $products->description }}</textarea>
+                                    name="description" required autofocus>{{ $products->description }}</textarea>
 
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
@@ -95,6 +95,12 @@
                                     <input id="image" type="file" class="form-control" name="image">
                                 </div>
                             </div>
+
+                            @error('image')
+                                <span class="form-control @error('image') is-invalid @enderror" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">

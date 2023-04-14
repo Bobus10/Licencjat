@@ -39,8 +39,8 @@
                                 <a href="{{ route('products.edit', $product->id) }}" class="float-right">
                                     <button type="button" class="btn btn-primary"> E </button>
                                 </a>
-                                <a data-id="{{ $product->id }}" class="float-right">
-                                    <button type="button" class="btn btn-danger delete"> X </button>
+                                <a class="float-right">
+                                    <button data-id="{{ $product->id }}" type="button" class="btn btn-danger delete"> X </button>
                                 </a>
                                 {{-- <button class="btn btn-danger btn-sm delete " data-id="{{ $product->id }}"> X </button> --}}
                             </td>

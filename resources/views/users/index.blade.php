@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1>Lista użytkowników</h1>
+            </div>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
