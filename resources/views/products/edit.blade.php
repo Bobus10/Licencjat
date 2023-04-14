@@ -34,7 +34,7 @@
 
                                 <div class="col-md-6">
                                     <textarea id="description" maxlength="1500" class="form-control @error('description') is-invalid @enderror"
-                                        name="description" required autofocus>{{ $products->description }}</textarea>
+                                        name="description" autofocus>{{ $products->description }}</textarea>
 
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
@@ -86,7 +86,6 @@
                                     <img src="{{ asset('storage/' . $products->image_path) }}"
                                         class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                                 </div>
-
                             </div>
 
                             <div class="row mb-3">
@@ -95,12 +94,6 @@
                                 <div class="col-md-6">
                                     <input id="image" type="file" class="form-control" name="image">
                                 </div>
-
-                                @error('image')
-                                <span class="form-control @error('image') is-invalid @enderror" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                             </div>
 
                             <div class="row mb-0">

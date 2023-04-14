@@ -6,7 +6,6 @@ use Exception;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\UpsertProductRequest;
 
 class ProductController extends Controller
 {
@@ -33,9 +32,9 @@ class ProductController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(UpsertProductRequest $request)
+    public function store(Request $request)
     {
-        $product = new Product($request->validated());
+        $product = new Product($request->all());
         if($request->hasFile('image')){
             $product->image_path = $request->file('image')->store('products');
         }
@@ -66,9 +65,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpsertProductRequest $request, Product $product): RedirectResponse
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        $product->fill($request->validated());
+        $product->fill($request->all());
         if($request->hasFile('image')){
             $product->image_path = $request->file('image')->store('products');
         }
