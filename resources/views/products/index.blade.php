@@ -17,10 +17,10 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{ __('shop.product.fields.name') }}</th>
-                        <th scope="col">{{ __('shop.product.fields.description') }}</th>
-                        <th scope="col">{{ __('shop.product.fields.amount') }}</th>
-                        <th scope="col">{{ __('shop.product.fields.price') }}</th>
+                        <th scope="col">{{ __('validation.attributes.name') }}</th>
+                        <th scope="col">{{ __('validation.attributes.description') }}</th>
+                        <th scope="col">{{ __('validation.attributes.amount') }}</th>
+                        <th scope="col">{{ __('validation.attributes.price') }}</th>
                         <th scope="col">{{ __('shop.columns.actions') }}</th>
                     </tr>
                 </thead>
@@ -54,6 +54,12 @@
 @endsection
 @section('javascript')
     const deleteUrl = "{{ url('products') }}/";
-    const messagesDelete = "{{ __('shop.messages.delete.confirm') }}";
+    {{-- const messagesDelete = "{{ __('shop.messages.delete.confirm') }}."; --}}
+    const messagesDelete=["{{ __('shop.messages.delete.confirm') }}",
+    "{{ __('shop.messages.delete.text') }}",
+    "{{ __('shop.messages.delete.confirm_button') }}",
+    "{{ __('shop.messages.delete.cancel_button') }}",
+    "{{ __('shop.messages.delete.done') }}",
+    "{{ __('shop.messages.delete.fail') }}"];
 @endsection
-@vite(['resources/js/delete.js']);
+@vite(['resources/js/delete.js'])

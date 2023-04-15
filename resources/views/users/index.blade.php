@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ __('validation.attributes.email') }}  </th>
+                    <th scope="col">{{ __('validation.attributes.email') }}</th>
                     <th scope="col">{{ __('validation.attributes.first_name') }}</th>
                     <th scope="col">{{ __('validation.attributes.last_name') }}</th>
                     <th scope="col">{{ __('validation.attributes.phone') }}</th>
@@ -40,10 +40,15 @@
 @endsection
 @section('javascript')
     const deleteUrl = "{{ url('users') }}/";
-    const messagesDelete = "{{ __('shop.messages.delete.confirm') }}";
+    const messagesDelete=["{{ __('shop.messages.delete.confirm') }}",
+    "{{ __('shop.messages.delete.text') }}",
+    "{{ __('shop.messages.delete.confirm_button') }}",
+    "{{ __('shop.messages.delete.cancel_button') }}",
+    "{{ __('shop.messages.delete.done') }}",
+    "{{ __('shop.messages.delete.fail') }}"];
 
 @endsection
-@vite(['resources/js/delete.js']);
+@vite(['resources/js/delete.js'])
 {{-- @section('js-files')
     <script src="{{ asset('js/delete.js') }}"></script>
 @endsection --}}

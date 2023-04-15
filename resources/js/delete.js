@@ -1,13 +1,13 @@
 $('.delete').on("click",function(){
     Swal.fire({
-      title: messagesDelete ,
-      text: 'text',
+      title: messagesDelete[0],
+      text: messagesDelete[1],
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Tak usuń!',
-      cancelButtonText: 'Anuluj'
+      confirmButtonText: messagesDelete[2],
+      cancelButtonText: messagesDelete[3]
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
@@ -15,11 +15,11 @@ $('.delete').on("click",function(){
             url: deleteUrl + $(this).data("id"),
           })
           .done(function( response ) {
-            Swal.fire( 'Dane zostały usuniętę!', )
+            Swal.fire( messagesDelete[4], )
             window.location.reload();
          })
           .fail(function( data ) {
-            Swal.fire( 'Coś poszło nie tak!', data.responseJSON.message, data.responseJSON.status)
+            Swal.fire( messagesDelete[5], data.responseJSON.message, data.responseJSON.status)
           });
         }
     })

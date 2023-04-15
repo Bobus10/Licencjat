@@ -26,11 +26,11 @@ return [
         'show_title' => 'Podgląd produktu: :name',
         'index_title' => 'Lista produktów',
         'fields' => [
-            'name' => 'Nazwa:',// {{ __('shop.product.fields.name') }}
-            'description' => 'Opis:',// {{ __('shop.product.fields.description') }}
-            'amount' => 'Ilość:',// {{ __('shop.product.fields.amount') }}
-            'price' => 'Cena:', // {{ __('shop.product.fields.price') }}
-            'image' => 'Grafika:',// {{ __('shop.product.fields.image') }}
+            // 'name' => 'Nazwa:',// {{ __('shop.product.fields.name') }}
+            // 'description' => 'Opis:',// {{ __('shop.product.fields.description') }}
+            // 'amount' => 'Ilość:',// {{ __('shop.product.fields.amount') }}
+            // 'price' => 'Cena:', // {{ __('shop.product.fields.price') }}
+            // 'image' => 'Grafika:',// {{ __('shop.product.fields.image') }}
         ],
     ],
     'user' => [

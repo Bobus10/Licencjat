@@ -12,7 +12,7 @@
                             @csrf
 
                             <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.name') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.name') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" maxlength="500"
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.description') }}</label>
+                                <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.description') }}</label>
 
                                 <div class="col-md-6">
                                     <textarea id="description" maxlength="1500" class="form-control @error('description') is-invalid @enderror"
@@ -44,7 +44,7 @@
 
                             <div class="row mb-3">
                                 <label for="amount"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.amount') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.amount') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="amount" type="number" min="0"
@@ -61,7 +61,7 @@
 
                             <div class="row mb-3">
                                 <label for="price"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.price') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.price') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="price" type="number" step="0.01" min="0"
@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.image') }}</label>
+                                <label class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.image') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="image" type="file" class="form-control" name="image">
