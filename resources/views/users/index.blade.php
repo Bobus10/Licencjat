@@ -4,18 +4,18 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h1>Lista użytkowników</h1>
+                <h1>{{ __('shop.user.index_title') }}</h1>
             </div>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">e-mail</th>
-                    <th scope="col">imie</th>
-                    <th scope="col">nazwisko</th>
-                    <th scope="col">numer telefonu</th>
-                    <th scope="col">Akcje</th>
+                    <th scope="col">{{ __('validation.attributes.email') }}</th>
+                    <th scope="col">{{ __('validation.attributes.first_name') }}</th>
+                    <th scope="col">{{ __('validation.attributes.last_name') }}</th>
+                    <th scope="col">{{ __('validation.attributes.phone') }}</th>
+                    <th scope="col">{{ __('shop.columns.actions') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,6 +40,8 @@
 @endsection
 @section('javascript')
     const deleteUrl = "{{ url('users') }}/";
+    const messagesDelete = "{{ __('shop.messages.delete.confirm') }}";
+
 @endsection
 @vite(['resources/js/delete.js']);
 {{-- @section('js-files')

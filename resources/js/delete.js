@@ -1,7 +1,7 @@
 $('.delete').on("click",function(){
     Swal.fire({
-      title: 'Czy chcesz usunąć rekord?',
-      text: "Nie możesz tego cofnąć!",
+      title: messagesDelete,
+      text: 'text',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
