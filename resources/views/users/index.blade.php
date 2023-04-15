@@ -11,11 +11,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-<<<<<<< HEAD
                     <th scope="col">{{ __('validation.attributes.email') }}  </th>
-=======
-                    <th scope="col">{{ __('validation.attributes.email') }}</th>
->>>>>>> c60f3b6 (1)
                     <th scope="col">{{ __('validation.attributes.first_name') }}</th>
                     <th scope="col">{{ __('validation.attributes.last_name') }}</th>
                     <th scope="col">{{ __('validation.attributes.phone') }}</th>
