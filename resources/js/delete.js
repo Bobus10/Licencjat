@@ -1,6 +1,6 @@
 $('.delete').on("click",function(){
     Swal.fire({
-      title: messagesDelete,
+      title: messagesDelete ,
       text: 'text',
       icon: 'warning',
       showCancelButton: true,
