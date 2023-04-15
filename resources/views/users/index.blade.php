@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">{{ __('validation.attributes.email') }} </th>
+                    <th scope="col">{{ __('validation.attributes.email') }}  </th>
                     <th scope="col">{{ __('validation.attributes.first_name') }}</th>
                     <th scope="col">{{ __('validation.attributes.last_name') }}</th>
                     <th scope="col">{{ __('validation.attributes.phone') }}</th>
