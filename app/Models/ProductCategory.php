@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductCategory extends Model
 {
@@ -11,4 +12,8 @@ class ProductCategory extends Model
     protected $fillable = [
         'name',
     ];
+    public function products(): HasMany
+    {
+        return $this->hasMany(product::class);
+    }
 }

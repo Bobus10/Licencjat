@@ -46,6 +46,21 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="category"
+                                class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.categories') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="category" name="category_id" disabled>
+                                    @if ($products->hasCategory())
+                                        <option>{{ $products->category->name }}</option>
+                                    @else
+                                        <option>Brak</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="image"
                                 class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.image') }}</label>
 

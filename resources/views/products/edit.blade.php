@@ -79,6 +79,29 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="category"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.categories') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="category"
+                                        class="form-control @error('price') is-invalid @enderror" name="category_id" required>
+                                        <option value="">brak</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                @if ($products->isSelectedCategory()) selected @endif>
+                                                {{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('category_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="image"
                                     class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.image') }}</label>
 

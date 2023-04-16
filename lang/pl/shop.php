@@ -26,6 +26,7 @@ return [
         'show_title' => 'Podgląd produktu: :name',
         'index_title' => 'Lista produktów',
         'fields' => [
+            'categories' => 'Kategorie',
             // 'name' => 'Nazwa:',// {{ __('shop.product.fields.name') }}
             // 'description' => 'Opis:',// {{ __('shop.product.fields.description') }}
             // 'amount' => 'Ilość:',// {{ __('shop.product.fields.amount') }}

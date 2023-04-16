@@ -21,6 +21,7 @@
                         <th scope="col">{{ __('validation.attributes.description') }}</th>
                         <th scope="col">{{ __('validation.attributes.amount') }}</th>
                         <th scope="col">{{ __('validation.attributes.price') }}</th>
+                        <th scope="col">{{ __('shop.product.fields.categories') }}</th>
                         <th scope="col">{{ __('shop.columns.actions') }}</th>
                     </tr>
                 </thead>
@@ -32,6 +33,7 @@
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->amount }}</td>
                             <td>{{ $product->price }}</td>
+                            <td>@if ($product->hasCategory()){{ $product->category->name }}@endif</td>
                             <td>
                                 <a href="{{ route('products.show', $product->id) }}" class="float-right">
                                     <button type="button" class="btn btn-success"> P </button>

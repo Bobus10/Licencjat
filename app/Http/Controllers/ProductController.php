@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductCategory;
 use Exception;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -25,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.create',[
+            'categories' => ProductCategory::all()
+        ]);
     }
 
     /**
@@ -49,7 +52,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         return view('products.show',[
-            'products' => $product
+            'products' => $product,
+            'categories' => ProductCategory::all()
         ]);
     }
 
@@ -59,7 +63,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         return view('products.edit',[
-            'products' => $product
+            'products' => $product,
+            'categories' => ProductCategory::all()
         ]);
     }
 
