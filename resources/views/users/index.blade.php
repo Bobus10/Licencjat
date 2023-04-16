@@ -23,8 +23,8 @@
                     <tr>
                         <th scope="row">{{ $user->id }}</th>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->surname }}</td>
+                        <td>{{ $user->first_name }}</td>
+                        <td>{{ $user->last_name }}</td>
                         <td>{{ $user->phone_number }}</td>
                         <td>
                             <a class="float-right">

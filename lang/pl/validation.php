@@ -178,7 +178,7 @@ return [
         'minute'                   => 'minuta',
         'mobile'                   => 'numer telefonu komórkowego',
         'month'                    => 'miesiąc',
-        'name'                     => 'nazwa',
+        'name'                     => 'Nazwa',
         'national_code'            => 'kod kraju',
         'number'                   => 'numer',
         'password'                 => 'hasło',

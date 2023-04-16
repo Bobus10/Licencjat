@@ -4,37 +4,37 @@ declare(strict_types=1);
 
 return [
     'columns' => [
-        'actions' => 'Akcje'
+        'actions' => 'Actions'
     ],
-    'messages' => [ // {{ __('shop.messages.delete.') }}
+    'messages' => [
         'delete' => [
-            'confirm' => 'Czy na pewno chcesz usunąć rekord?',
-            'text' => 'Nie możesz tego cofnąć!',
-            'confirm_button' => 'Tak usuń!',
-            'cancel_button' => 'Anuluj',
-            'done' => 'Dane zostały usuniętę!',
-            'fail' => 'Coś poszło nie tak!',
+            'confirm' => 'Are you sure you want to delete the record?',
+            'text' => 'You cant undo it!',
+            'confirm_button' => 'Yes remove!',
+            'cancel_button' => 'Cancel',
+            'done' => 'Data has been deleted!',
+            'fail' => 'Something went wrong!',
         ],
     ],
-    'button' => [ // {{ __('shop.button.save') }}
-        'save' => 'Zapisz',
-        'add' => 'Dodaj',
+    'button' => [
+        'save' => 'Save',
+        'add' => 'Add',
     ],
-    'product' => [ // {{ __('shop.product.add_title') }}
-        'add_title' => 'Dodawanie produktu',
-        'edit_title' => 'Edycja produktu: :name',
-        'show_title' => 'Podgląd produktu: :name',
-        'index_title' => 'Lista produktów',
+    'product' => [
+        'add_title' => 'Adding a product',
+        'edit_title' => 'Product Edit: :name',
+        'show_title' => 'Product Overview: :name',
+        'index_title' => 'List of products',
         'fields' => [
-            'name' => 'Nazwa:',// {{ __('shop.product.fields.name') }}
-            'description' => 'Opis:',// {{ __('shop.product.fields.description') }}
-            'amount' => 'Ilość:',// {{ __('shop.product.fields.amount') }}
-            'price' => 'Cena:', // {{ __('shop.product.fields.price') }}
-            'image' => 'Grafika:',// {{ __('shop.product.fields.image') }}
+            // 'name' => ':',
+            // 'description' => ':',
+            // 'amount' => ':',
+            // 'price' => ':',
+            // 'image' => ':',
         ],
     ],
     'user' => [
-        'index_title' => 'Lista Użytkowników',
+        'index_title' => 'User List',
     ],
 
 ];
