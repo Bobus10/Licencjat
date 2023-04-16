@@ -88,7 +88,7 @@
                                         <option value="">brak</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"
-                                                @if ($products->isSelectedCategory()) selected @endif>
+                                                @if ($products->isSelectedCategory($category->id)) selected @endif>
                                                 {{ $category->name }}</option>
                                         @endforeach
                                     </select>
