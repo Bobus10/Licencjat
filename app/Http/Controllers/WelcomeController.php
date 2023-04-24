@@ -5,25 +5,35 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
+use Illuminate\Routing\Controller;
 
 class WelcomeController extends Controller
 {
+    //use WithPagination;
+    public $pageSize=5;
+
+    public function changePageSize($size){
+        $this->pageSize=$size;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         $filters = $request->query('filter');
+        //$paginate = $request->query('paginate')??5;
+
+
         $query = Product::query();
         if(!is_null($filters)){
             if(array_key_exists('categories', $filters)){
                 $query = $query->whereIn('category_id', $filters['categories']);
             }
             if(!is_null($filters['price_min'])){
-                $query = $query->whereIn('price', '>=', $filters['price_min']);
+                $query = $query->where('price', '>=', $filters['price_min']);
             }
             if(!is_null($filters['price_max'])){
-                $query = $query->whereIn('price', '<=', $filters['price_max']);
+                $query = $query->where('price', '<=', $filters['price_max']);
             }
 
             return response()->json([
@@ -32,8 +42,9 @@ class WelcomeController extends Controller
         }
 
         return view('welcome',[
-            'products' => Product::paginate(6),
+            'products' => Product::paginate($this->pageSize),
             'categories' => ProductCategory::orderBy('name', 'asc')->get(),
+            'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
         ]);
     }
 }

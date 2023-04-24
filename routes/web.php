@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CheckoutController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,3 +37,7 @@ Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.d
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');//->middleware('auth');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');//->middleware('auth');

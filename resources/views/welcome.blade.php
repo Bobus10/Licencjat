@@ -29,7 +29,7 @@
     </header>
 
     <!-- sidebar + content -->
-    <form class="" id="sidebar_filter" >
+    <form class="" id="sidebar_filter" >                                    <!-- tu dodac action route -->
       <div class="container">
         <div class="row">
           <!-- sidebar -->
@@ -96,29 +96,22 @@
                     <div class="accordion-body">
                       <div class="row mb-3">
                         <div class="col-6">
-                          <p class="mb-0">
-                            Min
-                          </p>
-                          <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" name="filter[price_min]" placeholder="0"/>
-                            {{-- <label class="form-label" for="typeNumber">$0</label> --}}
-                          </div>
+                            <div class="form-outline">
+                                <label class="form-label" for="filter[price_min]">Min</label>
+                                <input type="number" id="filter[price_min]" class="form-control" name="filter[price_min]" placeholder="0" min="0"/>
+                            </div>
                         </div>
                         <div class="col-6">
-                          <p class="mb-0">
-                            Max
-                          </p>
-                          <div class="form-outline">
-                            <input type="number" id="typeNumber" class="form-control" name="filter[price_max]" placeholder="1 000"/>
-                            {{-- <label class="form-label" for="typeNumber">$1,0000</label> --}}
-                          </div>
+                            <div class="form-outline">
+                                <label class="form-label" for="filter[price_max]">Max</label>
+                                <input type="number" id="filter[price_max]" class="form-control" name="filter[price_max]" placeholder="1 000" min="0"/>
+                            </div>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
-                <div class="accordion-item">
+                {{-- <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
                     <button
                             class="accordion-button text-dark bg-light"
@@ -143,8 +136,9 @@
                       <label class="btn btn-white mb-1 px-1" style="width: 60px;" for="btn-check4">XXL</label>
                     </div>
                   </div>
-                </div>
-                <div class="accordion-item">
+                </div> --}}
+
+                {{-- <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
                     <button
                             class="accordion-button text-dark bg-light"
@@ -193,23 +187,34 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> --}}
             </div>
           </div>
           <button id="filter-button" type="button" class="btn btn-white w-100 border border-secondary">{{ __('validation.attributes.filter') }}uj</button>
         </div>
+    </form>
         <!-- sidebar -->
         <!-- content -->
         <div class="col-lg-9">
           <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-            <strong class="d-block py-2">{{ count($products) }} Produktów </strong>
-            <div class="ms-auto">
+            <strong class="d-block py-2">{{ $products->total() }} Produktów </strong>
+                <div class="ms-auto"> Widok:
+              <select class="form-select d-inline-block w-auto border pt-1" id="product_count_value">
+                <option
+                {{-- class="{{ $pageSize==5 ? 'active': '' }}"  --}}
+                value="5" wire:click.prevent="changePageSize(5)">5</option>
+                <option value="10" wire:click.prevent="changePageSize(10)">10</option>
+                <option value="15" wire:click.prevent="changePageSize(15)">15</option>
+                <option value="20" wire:click.prevent="changePageSize(20)">20</option>
+              </select>
+
               <select class="form-select d-inline-block w-auto border pt-1">
                 <option value="0">Best match</option>
                 <option value="1">Recommended</option>
                 <option value="2">High rated</option>
                 <option value="3">Randomly</option>
               </select>
+
               <div class="btn-group shadow-0 border">
                 <a href="#" class="btn btn-light" title="List view">
                   <i class="fa fa-bars fa-lg"></i>
@@ -231,11 +236,9 @@
                     <div class="col-xl-3 col-md-4 d-flex justify-content-center">
                       <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
                         @if(!is_null($product->image_path))
-                        <img src="{{ asset('storage/' . $product->image_path) }}"
-                        class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                            <img src="{{ asset('storage/' . $product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                         @else
-                        <img src="https://via.placeholder.com/240x240/5fa9f8/efefef"
-                            class="img-fluid mx-auto d-block" alt="Card image cap">
+                            <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                         @endif
                         <a href="#!">
                           <div class="hover-overlay">
@@ -286,13 +289,14 @@
 
           <!-- Pagination -->
           <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-                {{ $products->links() }}
+                {!! $products->links() !!}
           </nav>
           <!-- Pagination -->
         </div>
       </div>
     </div>
-  </form>
+
+
   <!-- Footer -->
   <footer class="text-center text-lg-start text-muted bg-primary mt-3">
     <!-- Section: Links  -->
@@ -403,24 +407,6 @@
               <li>
                 <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
               </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
-              </li>
             </ul>
           </div>
           <!--- language selector --->
@@ -432,6 +418,7 @@
 @endsection
 @section('javascript')
     const storagePath = "{{ asset('storage')}}/";
+    const defaultImageUrl = "{{ $defaultImageUrl }}";
 @endsection
 @vite(['resources/js/welcome.js'])
 {{-- <div class="p-3 text-center bg-white border-bottom">

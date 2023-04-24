@@ -18,6 +18,10 @@ class ProductCategorySeeder extends Seeder
             ['name' => 'Smartfony'],
             ['name' => 'Smartwatche'],
             ['name' => 'Ochrona telefonu'],
+            ['name' => 'Laptopy'],
+            ['name' => 'Komputery'],
+            ['name' => 'Urządzenia peryferyjne'],
+            ['name' => 'Monitory'],
         ];
         ProductCategory::insert($data);
     }
