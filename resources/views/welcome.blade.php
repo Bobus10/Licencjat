@@ -235,11 +235,13 @@
                   <div class="row g-0">
                     <div class="col-xl-3 col-md-4 d-flex justify-content-center">
                       <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
+                            <a href="{{ route('products.details', $product->id) }}" class="float-right">
                         @if(!is_null($product->image_path))
                             <img src="{{ asset('storage/' . $product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                         @else
                             <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                         @endif
+                            </a>
                         <a href="#!">
                           <div class="hover-overlay">
                             <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -417,8 +419,11 @@
   <!-- Footer -->
 @endsection
 @section('javascript')
-    const storagePath = "{{ asset('storage')}}/";
-    const defaultImageUrl = "{{ $defaultImageUrl }}";
+    const WELCOME_DATA ={
+        storagePath: "{{ asset('storage')}}/",
+        defaultImageUrl: "{{ $defaultImageUrl }}",
+        addToCart: '{{ url('cart') }}/',
+    }
 @endsection
 @vite(['resources/js/welcome.js'])
 {{-- <div class="p-3 text-center bg-white border-bottom">

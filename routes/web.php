@@ -33,17 +33,21 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 Route::middleware(['auth'])->group(function (){
     Route::middleware(['can:isAdmin'])->group(function (){
+        //products section
         Route::resource('products', ProductController::class);
-
+        //users section
         Route::get('/users/list', [UserController::class, 'index'])->name('users.index');
         Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
+    //koszyk
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
+    //finalizacja zamowienia
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    //strona po zalogowaniu
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
-
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');//->middleware('auth');
-
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');//->middleware('auth');
+Route::get('/details/{product}', [ProductController::class, 'details'])->name('products.details');
 
 Auth::routes();

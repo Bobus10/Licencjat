@@ -95,4 +95,11 @@ class ProductController extends Controller
             ,'message' => $e->getMessage()])->setStatusCode(500);
         }
     }
+    public function details(Product $product)
+    {
+        return view('products.details',[
+            'products' => $product,
+            'rproducts' => $product->where('category_id', $product->category_id)->inRandomOrder()->limit(4),
+        ]);
+    }
 }

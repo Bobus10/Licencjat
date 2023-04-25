@@ -81,8 +81,8 @@ $(function() {
 
     function getImageUrl(product){
         if(!!product.image_path){
-            return storagePath + product.image_path;
+            return WELCOME_DATA.storagePath + product.image_path;
         }
-        return defaultImageUrl;
+        return WELCOME_DATA.defaultImageUrl;
     }
 });

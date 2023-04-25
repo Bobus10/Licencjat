@@ -83,13 +83,12 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.categories') }}</label>
 
                                 <div class="col-md-6">
-                                    <select id="category"
-                                        class="form-control @error('price') is-invalid @enderror" name="category_id" required>
+                                    <select id="category" class="form-control @error('price') is-invalid @enderror" name="category_id" required>
                                         <option value="">brak</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"
-                                                @if ($products->isSelectedCategory($category->id)) selected @endif>
-                                                {{ $category->name }}</option>
+                                                @if ($products->isSelectedCategory($category->id)) selected @endif> {{ $category->name }}
+                                            </option>
                                         @endforeach
                                     </select>
 

@@ -35,7 +35,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+home
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,6 +74,12 @@
                                         @csrf
                                     </form>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/cart">Ulubione</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/cart">Koszyk</a>
                             </li>
                         @endguest
                     </ul>

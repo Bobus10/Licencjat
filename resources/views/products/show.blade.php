@@ -50,7 +50,7 @@
                                 class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.categories') }}</label>
 
                             <div class="col-md-6">
-                                <select id="category" name="category_id" disabled>
+                                <select class="form-control" id="category" name="category_id" disabled>
                                     @if ($products->hasCategory())
                                         <option>{{ $products->category->name }}</option>
                                     @else
