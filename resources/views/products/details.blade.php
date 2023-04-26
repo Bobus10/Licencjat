@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-        <div class="row">
+
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -36,20 +36,24 @@
                                         <h4><span class="badge badge-success-lighten">Instock</span></h4>
                                     </div>
 
-                                    <!-- Product description -->
+                                    {{-- <form action="{{ route('cart.store') }} " method="POST">
+                                        @csrf --}}
+                                    <!-- Product price -->
                                     <div class="mt-4">
                                         <h6 class="font-14">Retail Price:</h6>
                                         <h3> {{ $products->price }}PLN </h3>
                                     </div>
 
-                                    <!-- Quantity -->
+                                    <!-- Quantity wire:click.prevent="store{ $product->id }}"-->
                                     <div class="mt-4">
                                         <h6 class="font-14">Quantity</h6>
                                         <div class="d-flex">
-                                            <input type="number" min="1" value="1" class="form-control" placeholder="Qty" style="width: 90px;">
-                                            <button type="button" class="btn btn-danger ms-2"><i class="mdi mdi-cart me-1"></i> Add to cart</button>
+                                            <input type="hidden" name="product_id" value="{{ $products->id }}">
+                                            <input type="number" name="quantity" min="1" value="1" class="form-control" placeholder="quantity" style="width: 90px;">
+                                            <button type="submit" class="btn btn-danger ms-2" > Add to cart</button>
                                         </div>
                                     </div>
+                                    {{-- </form> --}}
 
                                     <!-- Product description -->
                                     <div class="mt-4">

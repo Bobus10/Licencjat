@@ -16,7 +16,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    {{-- @livewireStyles --}}
 </head>
 
 <body>
@@ -79,7 +79,11 @@ home
                                 <a class="nav-link" href="/cart">Ulubione</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/cart">Koszyk</a>
+                                <a class="nav-link" href="/cart">
+                                    @livewire('cart-counter')
+
+                                  {{-- koszyk  ( {{ Cart::count() }} ) --}}
+                                </a>
                             </li>
                         @endguest
                     </ul>
@@ -98,6 +102,7 @@ home
         @yield('javascript')
     </script>
     @yield('js-files')
+    {{-- @livewireScripts --}}
 </body>
 
 </html>

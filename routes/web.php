@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function (){
     });
     //koszyk
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     //finalizacja zamowienia
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     //strona po zalogowaniu

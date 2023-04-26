@@ -117,6 +117,9 @@
                         </div>
                     </div>
                 </div>
+                @else
+                    No item in cart
+                @endif
             </div>
         </div>
    </section>

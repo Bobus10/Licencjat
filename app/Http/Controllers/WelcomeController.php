@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Routing\Controller;
+use App\Http\Requests\UpsertProductRequest;
 
 class WelcomeController extends Controller
 {
