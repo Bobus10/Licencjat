@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\ProductCategory;
 use Exception;
 use App\Models\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\UpsertProductRequest;
@@ -101,6 +100,7 @@ class ProductController extends Controller
     {
         return view('products.details',[
             'products' => $product,
+            'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
             //'rproducts' => $product->where('category_id', $product->category_id)->inRandomOrder()->limit(4),
         ]);
     }

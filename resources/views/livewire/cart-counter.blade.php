@@ -1,3 +1,3 @@
 <div>
-    Koszyk( {{ $cart_count }} )
+    {{-- Koszyk( {{ $cart_count }} ) --}}
 </div>

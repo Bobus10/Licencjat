@@ -9,17 +9,17 @@
                                 <!-- Product image -->
                                 <div class="col-md-6">
                                     @if(!is_null($products->image_path))
-                                        <img src="{{ asset('storage/' . $products->image_path) }}"
-                                        class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
-                                        @else
-                                        <img src="https://via.placeholder.com/240x240/5fa9f8/efefef"
-                                            class="img-fluid mx-auto d-block" alt="Card image cap">
-                                        @endif
+                            <img src="{{ asset('storage/' . $products->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                        @else
+                            <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                        @endif
                                 </div>
 
                             </div> <!-- end col -->
                             <div class="col-lg-7">
                                 <form class="ps-lg-4">
+                                    @csrf
+
                                     <!-- Product title -->
                                     <h3 class="mt-0"> {{ $products->name }} <i class="mdi mdi-square-edit-outline ms-2"></i> </h3>
                                     <p class="mb-1">Added Date: {{ $products->created_at }}</p>
@@ -37,7 +37,7 @@
                                     </div>
 
                                     {{-- <form action="{{ route('cart.store') }} " method="POST">
-                                        @csrf --}}
+                                        csrf --}}
                                     <!-- Product price -->
                                     <div class="mt-4">
                                         <h6 class="font-14">Retail Price:</h6>
@@ -48,9 +48,10 @@
                                     <div class="mt-4">
                                         <h6 class="font-14">Quantity</h6>
                                         <div class="d-flex">
-                                            <input type="hidden" name="product_id" value="{{ $products->id }}">
+                                            {{-- <input type="hidden" name="product_id" value="{{ $products->id }}"> --}}
                                             <input type="number" name="quantity" min="1" value="1" class="form-control" placeholder="quantity" style="width: 90px;">
-                                            <button type="submit" class="btn btn-danger ms-2" > Add to cart</button>
+                                            <button type="submit" class="btn btn-danger ms-2 add_cart_button" data-id="{{ $products->id }}"
+                                                @guest disabled @endguest> Add to cart</button>
                                         </div>
                                     </div>
                                     {{-- </form> --}}
@@ -132,3 +133,11 @@
                 </div>
             </div>
 @endsection
+@section('javascript')
+    const WELCOME_DATA ={
+        storagePath: "{{ asset('storage')}}/",
+        defaultImageUrl: "{{ $defaultImageUrl }}",
+        addToCart: '{{ url('cart') }}/',
+    }
+@endsection
+@vite(['resources/js/welcome.js'])

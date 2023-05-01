@@ -16,7 +16,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {{-- @livewireStyles --}}
+    @livewireStyles
 </head>
 
 <body>
@@ -76,14 +76,17 @@ home
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/cart">Ulubione</a>
+                                {{-- <a class="nav-link" href="/cart">Ulubione</a> --}}
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/cart">
-                                    @livewire('cart-counter')
+                              {{--  <x-nav-link :href={{ route('shopping-cart') }} :active="request()->routeIs('shopping-cart')">{{ __('shopping-cart') }}</x-nav-link>
+                                   <a href="shopping-cart"></a>  active="request()->routeIs('shopping-cart')"--}}
 
-                                  {{-- koszyk  ( {{ Cart::count() }} ) --}}
-                                </a>
+                                    {{-- <a class="nav-link" href="/shopping-cart">{{ __('Cart') }}</a>href="/cart" --}}
+                                    <a class="nav-link" href="{{ route('shopping-cart') }}" active="request()->routeIs('shopping-cart')"> {{ __('Cart') }}</a>
+
+                                  {{-- koszyk  (@livewire) --}}
+
                             </li>
                         @endguest
                     </ul>
@@ -95,14 +98,13 @@ home
             @yield('content')
         </main>
     </div>
-    <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    {{-- <script src="public/assets/jquery.js"></script> --}}
     <script type="text/javascript">
         @yield('javascript')
     </script>
     @yield('js-files')
-    {{-- @livewireScripts --}}
+
+    @livewireScripts
 </body>
 
 </html>

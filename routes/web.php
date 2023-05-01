@@ -2,11 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Livewire\ShoppingCart;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,12 +42,11 @@ Route::middleware(['auth'])->group(function (){
         Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
     //koszyk
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::get('/cart',ShoppingCart::class)->name('shopping-cart');
     //finalizacja zamowienia
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     //strona po zalogowaniu
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
 Route::get('/details/{product}', [ProductController::class, 'details'])->name('products.details');
