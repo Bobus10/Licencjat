@@ -76,17 +76,10 @@ home
                                 </div>
                             </li>
                             <li class="nav-item">
-                                {{-- <a class="nav-link" href="/cart">Ulubione</a> --}}
+                                <a class="nav-link" href="/cart">Ulubione</a>
                             </li>
                             <li class="nav-item">
-                              {{--  <x-nav-link :href={{ route('shopping-cart') }} :active="request()->routeIs('shopping-cart')">{{ __('shopping-cart') }}</x-nav-link>
-                                   <a href="shopping-cart"></a>  active="request()->routeIs('shopping-cart')"--}}
-
-                                    {{-- <a class="nav-link" href="/shopping-cart">{{ __('Cart') }}</a>href="/cart" --}}
-                                    <a class="nav-link" href="{{ route('shopping-cart') }}" active="request()->routeIs('shopping-cart')"> {{ __('Cart') }}</a>
-
-                                  {{-- koszyk  (@livewire) --}}
-
+                                @livewire('cart-counter')
                             </li>
                         @endguest
                     </ul>

@@ -20,39 +20,39 @@
                                 <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                             @endif
                              </div>
-                             <div class="col-md-8">
-                                 <div class="info">
-                                     <div class="row">
-                                         <div class="col-md-5 product-name">
+                            <div class="col-md-8">
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="col-md-5 product-name">
                                              <div class="product-name">
-                                                {{ $item->product->name }}  {{ $item->product->price }} PLN
+                                                id:{{ $item->id }} {{ $item->product->name }}  {{ $item->product->price }} PLN
+                                                <button class="btn btn-danger" wire:click="removeItem({{ $item->id }})">Usuń</button>
                                                  {{-- <div class="product-info">
                                                      <div>Display: <span class="value">5 inch</span></div>
                                                      <div>RAM: <span class="value">4GB</span></div>
                                                      <div>Memory: <span class="value">32GB</span></div>
                                                  </div> --}}
                                              </div>
-                                         </div>
-                                         <div class="col-md-4 quantity">quantity
+                                        </div>
+                                        <div class="col-md-4 quantity">quantity
                                             <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                                 <button id="decrementQty" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none" wire:click="decrementQty({{ $item->id }})">
                                                     <span class="m-auto text-2xl font-thin">-</span>
                                                 </button>
                                                 <span class="p-2">{{ $item->quantity}}</span>
-                                                <button id="incrementQty" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer"  >
-                                                    <span class="m-auto text-2xl font-thin" wire:click="incrementQty({{ $item->id }})">+</span>
+                                                <button id="incrementQty" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer" wire:click="incrementQty({{ $item->id }})">
+                                                    <span class="m-auto text-2xl font-thin">+</span>
                                                 </button>
                                             </div>
                                             {{-- <input type="number" id="quantity" name="quantity" min="1" value="{{ $item->quantity}}" class="form-control" placeholder="{{ $item->quantity}}" style="width: 90px;"> --}}
-                                            </div>
-                                            <div class="col-md-3 price">
-                                                {{-- Unit Price: {{ $item->product->price }} PLN --}}
-                                                Total Price: {{ $item->product->price * $item->quantity }} PLN
-                                             </div>
-
-                                     </div>
-                                 </div>
-                             </div>
+                                        </div>
+                                        <div class="col-md-3 price">
+                                            {{-- Unit Price: {{ $item->product->price }} PLN --}}
+                                            Total Price: {{ $item->product->price * $item->quantity }} PLN
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
                          </div>
                      </div>

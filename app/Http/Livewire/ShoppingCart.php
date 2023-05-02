@@ -42,4 +42,12 @@ class ShoppingCart extends Component
             echo "Less then 1";
         }
     }
+
+    public function removeItem($id){
+        $cart = Cart::whereId($id)->first();
+        if($cart){
+            $cart->delete();
+            $this->emit('updateCartCount');
+        }
+    }
 }

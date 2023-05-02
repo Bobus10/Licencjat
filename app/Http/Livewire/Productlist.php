@@ -3,15 +3,18 @@
 namespace App\Http\Livewire;
 use App\Models\Product;
 use App\Models\ShoppingCart;
+use WithPagination;
 
 use Livewire\Component;
 
 class Productlist extends Component
 {
     public $products;
+    // protected $paginationTheme = 'bootstrap';
     public function render()
     {
         $this -> products = Product::get();
+
 
         return view('livewire.productlist', [
             'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
@@ -25,6 +28,9 @@ class Productlist extends Component
                 'product_id' => $id,
             ];
             ShoppingCart::UpdateOrCreate($data);
+
+            $this->emit('updateCartCount');
+
             session()->flash('success', 'Product add to the cart successfully');
         }else {
             return redirect(route('login'));

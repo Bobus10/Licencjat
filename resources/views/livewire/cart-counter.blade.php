@@ -1,3 +1,3 @@
 <div>
-    {{-- Koszyk( {{ $cart_count }} ) --}}
+    <a class="nav-link" href="{{ route('shopping-cart') }}"> Cart({{ $total }})</a>
 </div>
