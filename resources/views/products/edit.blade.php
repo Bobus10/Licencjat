@@ -8,9 +8,9 @@
                     <div class="card-header">{{ __('shop.product.edit_title', ['name' => $products->name]) }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('products.update', $products->id) }}"
-                            enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('products.update', $products->id) }}" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
 
                             <div class="row mb-3">
                                 <label for="name"

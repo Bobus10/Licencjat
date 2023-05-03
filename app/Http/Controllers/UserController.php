@@ -64,7 +64,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         try {
-            throw new Exception();//zakomentować by działało
+            //throw new Exception();//zakomentować by działało
             $user->delete();
             return response()->json(['status' =>'success']);
         } catch (Exception $e) {

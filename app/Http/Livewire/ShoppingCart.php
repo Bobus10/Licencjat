@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\ShoppingCart as Cart;
+use App\Http\Requests\UpsertProductRequest;
+use Illuminate\Support\Facades\Request;
 
 class ShoppingCart extends Component
 {
@@ -25,29 +27,27 @@ class ShoppingCart extends Component
             'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
         ]);
     }
-
-    public function incrementQty($id){
-        // $cart = Cart::where('id',$id)->where('user_id', auth()->user()->id)->first();
-        $cart = Cart::whereId($id)->first();
-        $cart->quantity +=1;
-        $cart->save();
-    }
-
-    public function decrementQty($id){
-        $cart = Cart::whereId($id)->first();
-        if($cart->quantity >1){
-            $cart->quantity -=1;
-            $cart->save();
-        }else{
-            echo "Less then 1";
-        }
-    }
-
-    public function removeItem($id){
+    public function incrementQty($id)
+    {
         $cart = Cart::whereId($id)->first();
         if($cart){
-            $cart->delete();
+            $cart->increment('quantity');
             $this->emit('updateCartCount');
         }
+    }
+
+    public function decrementQty($id)
+    {
+        $cart = Cart::whereId($id)->first();
+        if($cart && $cart->quantity > 1){
+            $cart->decrement('quantity');
+            $this->emit('updateCartCount');
+        }
+    }
+
+    public function destroy($id){
+        $cart = Cart::find($id);
+        $cart -> delete();
+        return redirect()->back();
     }
 }

@@ -85,16 +85,19 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        try {
-            throw new Exception();//zakomentować by działało
-            $product->delete();
-            return response()->json(['status' =>'success']);
-        } catch (Exception $e) {
-            return response()->json(['status' =>'error'
-            ,'message' => $e->getMessage()])->setStatusCode(500);
-        }
+        $product = Product::where('id',$id)->first();
+        $product -> delete();
+        return redirect()->back();
+        // try {
+        //     //throw new Exception(); //zakomentować by działało
+        //     $product -> delete();
+        //     return redirect()->back();
+        // } catch (Exception $e) {
+        //     return response() -> $e->getMessage()->setStatusCode(500);
+        // }
+
     }
     public function details(Product $product)
     {

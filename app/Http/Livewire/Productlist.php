@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Models\Product;
-use App\Models\ShoppingCart;
+use App\Models\ShoppingCart as Cart;
 use WithPagination;
 
 use Livewire\Component;
@@ -27,7 +27,7 @@ class Productlist extends Component
                 'user_id' => auth() -> user()->id,
                 'product_id' => $id,
             ];
-            ShoppingCart::UpdateOrCreate($data);
+            Cart::UpdateOrCreate($data);
 
             $this->emit('updateCartCount');
 

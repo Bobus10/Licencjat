@@ -26,7 +26,8 @@
                                         <div class="col-md-5 product-name">
                                              <div class="product-name">
                                                 id:{{ $item->id }} {{ $item->product->name }}  {{ $item->product->price }} PLN
-                                                <button class="btn btn-danger" wire:click="removeItem({{ $item->id }})">Usuń</button>
+                                                <a href="{{ route('shopping-cart.destroy', $item->id) }}">
+                                                    <button type="button" class="btn btn-danger" >X</button></a>
                                                  {{-- <div class="product-info">
                                                      <div>Display: <span class="value">5 inch</span></div>
                                                      <div>RAM: <span class="value">4GB</span></div>
@@ -34,19 +35,20 @@
                                                  </div> --}}
                                              </div>
                                         </div>
+                                        {{-- id="decrementQty"  id="incrementQty" --}}
+                                    {{-- <form method="POST" action="{{ route('shopping-cart', $item->id) }}">
+                                        method('GET') --}}
                                         <div class="col-md-4 quantity">quantity
-                                            <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                                                <button id="decrementQty" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none" wire:click="decrementQty({{ $item->id }})">
-                                                    <span class="m-auto text-2xl font-thin">-</span>
-                                                </button>
-                                                <span class="p-2">{{ $item->quantity}}</span>
-                                                <button id="incrementQty" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer" wire:click="incrementQty({{ $item->id }})">
-                                                    <span class="m-auto text-2xl font-thin">+</span>
-                                                </button>
+                                            <div class="">
+                                                <span class="p-2">{{ $item->quantity }}</span>
+                                                {{-- <input id="quantity" type="number" min="1" name="quantity" value="{{ $item->quantity }}" > --}}
+                                                <button type="button" class="btn btn-primary" wire:click="incrementQty({{ $item->id }})"> + </button>
+                                                <button type="button" class="btn btn-primary" wire:click="decrementQty({{ $item->id }})"> - </button>
                                             </div>
-                                            {{-- <input type="number" id="quantity" name="quantity" min="1" value="{{ $item->quantity}}" class="form-control" placeholder="{{ $item->quantity}}" style="width: 90px;"> --}}
                                         </div>
+                                    </form>
                                         <div class="col-md-3 price">
+ {{--<button type="button" class="btn btn-primary"  value="({{ $item->quantity }})"> + </button> <input type="number" id="quantity" name="quantity" min="1" value="{{ $item->quantity}}" class="form-control" placeholder="{{ $item->quantity}}" style="width: 90px;"> --}}
                                             {{-- Unit Price: {{ $item->product->price }} PLN --}}
                                             Total Price: {{ $item->product->price * $item->quantity }} PLN
                                         </div>
@@ -78,5 +80,6 @@
  </div>
 @endsection
 @vite(['resources/js/welcome.js'])
+@vite(['resources/js/delete.js'])
 
 
