@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@push('css')
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-@endpush
 @section('content')
 <!--Main Navigation-->
 <header>

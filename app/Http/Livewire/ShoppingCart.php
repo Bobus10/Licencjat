@@ -29,7 +29,7 @@ class ShoppingCart extends Component
     }
     public function incrementQty($id)
     {
-        $cart = Cart::whereId($id)->first();
+        $cart = Cart::find($id);
         if($cart){
             $cart->increment('quantity');
             $this->emit('updateCartCount');

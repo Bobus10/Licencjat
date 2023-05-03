@@ -1,4 +1,4 @@
-@section('content')
+<div>
 <div class="container">
     <div class="block-heading">
       <h2>Shopping Cart</h2>
@@ -35,21 +35,16 @@
                                                  </div> --}}
                                              </div>
                                         </div>
-                                        {{-- id="decrementQty"  id="incrementQty" --}}
-                                    {{-- <form method="POST" action="{{ route('shopping-cart', $item->id) }}">
-                                        method('GET') --}}
                                         <div class="col-md-4 quantity">quantity
                                             <div class="">
+                                                <button class="btn btn-primary" wire:click="decrementQty({{ $item->id }})"> - </button>
                                                 <span class="p-2">{{ $item->quantity }}</span>
-                                                {{-- <input id="quantity" type="number" min="1" name="quantity" value="{{ $item->quantity }}" > --}}
-                                                <button type="button" class="btn btn-primary" wire:click="incrementQty({{ $item->id }})"> + </button>
-                                                <button type="button" class="btn btn-primary" wire:click="decrementQty({{ $item->id }})"> - </button>
+                                                <button class="btn btn-primary" wire:click="incrementQty({{ $item->id }})"> + </button>
                                             </div>
                                         </div>
                                     </form>
                                         <div class="col-md-3 price">
- {{--<button type="button" class="btn btn-primary"  value="({{ $item->quantity }})"> + </button> <input type="number" id="quantity" name="quantity" min="1" value="{{ $item->quantity}}" class="form-control" placeholder="{{ $item->quantity}}" style="width: 90px;"> --}}
-                                            {{-- Unit Price: {{ $item->product->price }} PLN --}}
+                                            Unit Price: {{ $item->product->price }} PLN
                                             Total Price: {{ $item->product->price * $item->quantity }} PLN
                                         </div>
                                     </div>
@@ -74,12 +69,9 @@
                      <button type="button" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Checkout</button>
                  </div>
              </div>
-         </div>
 
+         </div>
      </div>
  </div>
-@endsection
-@vite(['resources/js/welcome.js'])
-@vite(['resources/js/delete.js'])
-
+</div>
 

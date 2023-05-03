@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -43,7 +44,7 @@ Route::middleware(['auth'])->group(function (){
         Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
     //koszyk
-    Route::get('/cart',ShoppingCart::class)->name('shopping-cart');
+    Route::get('/cart', [CartController::class, 'index'])->name('shopping-cart');
     Route::get('/cart/{item}', [ShoppingCart::class, 'destroy'])->name('shopping-cart.destroy');
     //finalizacja zamowienia
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');

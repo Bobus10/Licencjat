@@ -15,7 +15,6 @@ class Productlist extends Component
     {
         $this -> products = Product::get();
 
-
         return view('livewire.productlist', [
             'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
         ]);
