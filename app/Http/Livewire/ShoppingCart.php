@@ -2,26 +2,25 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\ShoppingCart as Cart;
-use App\Http\Requests\UpsertProductRequest;
-use Illuminate\Support\Facades\Request;
 
 class ShoppingCart extends Component
 {
-    public $cartItems, $sub_total = 0, $total = 0, $tax = 0;
+    public $cartItems, $sub_total = 0, $total = 0, $tax = 0, $shipping=0;
 
     public function render()
     {
         $this -> cartItems = Cart::with('product')
             ->where(['user_id'=>auth()->user()->id])
             ->get();
-        $this->total = 0; $this->sub_total = 0 ; $this->tax = 0;
+        $this->total = 0; $this->sub_total = 0 ; $this->tax = 0; $this->shipping=9.99;
 
         foreach($this->cartItems as $item){
             $this->sub_total += $item->product->price * $item->quantity;
         }
-        $this->total = $this->sub_total - $this->tax;
+        $this->total = $this->sub_total - $this->tax + $this->shipping;
 
         return view('livewire.shopping-cart',[
             'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
@@ -50,4 +49,7 @@ class ShoppingCart extends Component
         $cart -> delete();
         return redirect()->back();
     }
+    // public function destroyAll(){
+    //     return redirect()->back();
+    // }
 }

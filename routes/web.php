@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Livewire\ShoppingCart;
 
 /*
@@ -46,6 +47,9 @@ Route::middleware(['auth'])->group(function (){
     //koszyk
     Route::get('/cart', [CartController::class, 'index'])->name('shopping-cart');
     Route::get('/cart/{item}', [ShoppingCart::class, 'destroy'])->name('shopping-cart.destroy');
+    //zamówienia
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     //finalizacja zamowienia
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     //strona po zalogowaniu

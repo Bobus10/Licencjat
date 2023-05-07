@@ -1,77 +1,81 @@
-<div>
 <div class="container">
-    <div class="block-heading">
-      <h2>Shopping Cart</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+    @if ( $cartItems->count() > 0 )
+    <div class="block-heading pb-2">
+      <h2>W Koszyku jest {{ $cartItems->count() }} przedmiotów</h2>
+      <a href="/"><button class="btn btn-primary ">Wróć do zakupów</button></a>
+      <a href=""><button class="btn btn-danger">Wyczyść koszyk</button></a>
     </div>
     <div class="content">
         <div class="row">
-            @if (!is_null($cartItems))
-                                {{-- Produkty z koszyka --}}
-             <div class="col-md-12 col-lg-8">
-                 <div class="items">
-                     <div class="product">
-                        <div class="row">
-                            @foreach ($cartItems as $item)
-                             <div class="col-md-3">
-                            @if(!is_null($item->product->image_path))
-                                <img src="{{ asset('storage/' . $item->product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
-                            @else
-                                <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
-                            @endif
-                             </div>
-                            <div class="col-md-8">
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="col-md-5 product-name">
-                                             <div class="product-name">
-                                                id:{{ $item->id }} {{ $item->product->name }}  {{ $item->product->price }} PLN
-                                                <a href="{{ route('shopping-cart.destroy', $item->id) }}">
-                                                    <button type="button" class="btn btn-danger" >X</button></a>
-                                                 {{-- <div class="product-info">
-                                                     <div>Display: <span class="value">5 inch</span></div>
-                                                     <div>RAM: <span class="value">4GB</span></div>
-                                                     <div>Memory: <span class="value">32GB</span></div>
-                                                 </div> --}}
-                                             </div>
-                                        </div>
-                                        <div class="col-md-4 quantity">quantity
-                                            <div class="">
-                                                <button class="btn btn-primary" wire:click="decrementQty({{ $item->id }})"> - </button>
-                                                <span class="p-2">{{ $item->quantity }}</span>
-                                                <button class="btn btn-primary" wire:click="incrementQty({{ $item->id }})"> + </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                        <div class="col-md-3 price">
-                                            Unit Price: {{ $item->product->price }} PLN
-                                            Total Price: {{ $item->product->price * $item->quantity }} PLN
-                                        </div>
+        <div class="col">
+        @foreach ($cartItems as $item)
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-12">
+                    <div class="card shadow-0 border rounded-3">
+                        <div class="card-body">
+                            <div class="row g-0">
+                                <div class="col-xl-3 col-md-4 d-flex justify-content-center">
+                                <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
+                                        <a href="{{ route('products.details', $item->product->id) }}" class="float-right">
+                                    @if(!is_null($item->product->image_path))
+                                        <img src="{{ asset('storage/' . $item->product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                                    @else
+                                        <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                                    @endif
+                                        </a>
+                                </div>
+                                </div>
+                                <div class="col-xl-6 col-md-4 col-sm-7">
+                                    <a href="{{ route('products.details', $item->product->id) }}" class="float-right text-decoration-none text-black">
+                                    <h5>{{ $item->product->name }}</h5></a>
+                                    <div class="d-flex justify-content-between">
+
+                                    </div>
+                                    <div class="mt-3 d-flex">
+                                        <button class="btn btn-primary" wire:click="decrementQty({{ $item->id }})"> - </button>
+                                        <span class="p-2">{{ $item->quantity }}</span>
+                                        <button class="btn btn-primary" wire:click="incrementQty({{ $item->id }})"> + </button>
+                                        <a href="{{ route('shopping-cart.destroy', $item->id) }}">
+                                            <button type="button" class="btn btn-close btn-close mx-2"></button></a>
                                     </div>
                                 </div>
+                                <div class="col-xl-3 col-md-4 col-sm-5">
+                                    <div class="d-flex flex-row align-items-center mb-1">
+                                        <h6 class="mb-1 me-1">Unit Price: {{ $item->product->price }} PLN</h6>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-1">
+                                    </div>
+                                    <h4  class="mb-1 me-1">Total Price: {{ $item->product->price * $item->quantity }} PLN</h4>
+                                </div>
                             </div>
-                            @endforeach
-                         </div>
-                     </div>
-                  </div>
-             </div>
-             @else
-                <p>No item in cart</p>
-             @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        </div>
+            <div class="col col-lg-3 card border-secondary pb-2">
+                <div class="summary ">
+                    <h3 class="card-header">Summary</h3>
+                    <div class="summary-item"><span class="text">Subtotal: </span><span class="price"> {{ $sub_total }} PLN</span></div>
+                    <div class="summary-item"><span class="text">Discount: </span><span class="price"> {{ $tax }} PLN</span></div>
+                    <div class="summary-item"><span class="text">Shipping: </span><span class="price"> {{ $shipping }} PLN</span></div>
+                    <div class="summary-item"><span class="text-success">Total: </span><span class="price text-success"> {{ $total }} PLN</span></div>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Checkout</button>
+                </div>
+            </div>
 
-             <div class="col-md-12 col-lg-4">
-                 <div class="summary">
-                     <h3>Summary</h3>
-                     <div class="summary-item"><span class="text">Subtotal </span><span class="price"> {{ $sub_total }} PLN</span></div>
-                     <div class="summary-item"><span class="text">Discount</span><span class="price"> $0</span></div>
-                     <div class="summary-item"><span class="text">Shipping</span><span class="price"> $0</span></div>
-                     <div class="summary-item"><span class="text">Total </span><span class="price"> {{ $total }} PLN</span></div>
-                     <button type="button" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Checkout</button>
-                 </div>
-             </div>
 
-         </div>
-     </div>
- </div>
+
+    @else
+        <div class="block-heading pb-2 text-center">
+            <h2>Brak produktów w koszyku</h2>
+            <a href="/"><button class="btn btn-primary ">Wróć do zakupów</button></a>
+        </div>
+    @endif
+
+        </div>
+    </div>
 </div>
+
 
