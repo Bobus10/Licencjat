@@ -10,7 +10,7 @@ use Livewire\Component;
 class Productlist extends Component
 {
     public $products;
-    // protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
         $this -> products = Product::get();

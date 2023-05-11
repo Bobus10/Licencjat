@@ -6,46 +6,46 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use Illuminate\Routing\Controller;
-use App\Http\Requests\UpsertProductRequest;
 
 class WelcomeController extends Controller
 {
     //use WithPagination;
-    public $pageSize=5;
+    public $pageSize=10;
 
     public function changePageSize($size){
         $this->pageSize=$size;
     }
     /**
      * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-        $filters = $request->query('filter');
-        //$paginate = $request->query('paginate')??5;
+     */            //'products' => Product::paginate($this->pageSize),
+     public function index(Request $request)
+     {
+         $categories = $request->input('category', []);
+         $minPrice = $request->input('min_price');
+         $maxPrice = $request->input('max_price');
 
+         $products = Product::query();
 
-        $query = Product::query();
-        if(!is_null($filters)){
-            if(array_key_exists('categories', $filters)){
-                $query = $query->whereIn('category_id', $filters['categories']);
-            }
-            if(!is_null($filters['price_min'])){
-                $query = $query->where('price', '>=', $filters['price_min']);
-            }
-            if(!is_null($filters['price_max'])){
-                $query = $query->where('price', '<=', $filters['price_max']);
-            }
+         if (!empty($categories)) {
+             $products->whereIn('category_id', $categories);
+         }
 
-            return response()->json([
-                'data' => $query->get(),
-            ]);
+         if ($minPrice !== null) {
+            $products->where('price', '>=', $minPrice);
         }
 
-        return view('welcome',[
-            'products' => Product::paginate($this->pageSize),
-            'categories' => ProductCategory::orderBy('name', 'asc')->get(),
-            'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
-        ]);
-    }
+        if ($maxPrice !== null && $maxPrice > 0) {
+            $products->where('price', '<=', $maxPrice);
+        }
+
+         $filteredProducts = $products->get();
+
+         return view('welcome', [
+             'filteredProducts' => $filteredProducts,
+             'categories' => ProductCategory::orderBy('name', 'asc')->get(),
+             'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
+             'minPrice' => $minPrice,
+             'maxPrice' => $maxPrice,
+         ]);
+     }
 }

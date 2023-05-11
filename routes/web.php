@@ -48,8 +48,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/cart', [CartController::class, 'index'])->name('shopping-cart');
     Route::get('/cart/{item}', [ShoppingCart::class, 'destroy'])->name('shopping-cart.destroy');
     //zamówienia
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    //Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    //Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     //finalizacja zamowienia
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     //strona po zalogowaniu

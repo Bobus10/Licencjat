@@ -9,11 +9,11 @@ class Cartcounter extends Component
 {
     public $total = 0;
 
-    protected $listeners = ['updateCartCount' => 'getCartItemCount'];
+     protected $listeners = ['updateCartCount' => 'getCartItemCount'];
 
     public function render()
     {
-        $this->getCartItemCount();
+         $this->getCartItemCount();
 
         return view('livewire.cart-counter');
     }

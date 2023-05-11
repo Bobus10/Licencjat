@@ -30,181 +30,136 @@
       <div class="container">
         <div class="row">
           <!-- sidebar -->
-          <div class="col-lg-3">
+        <div class="col-lg-3">
             <!-- Toggle button -->
-            <form class="" id="sidebar_filter" >
-            <button
-                    class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                    >
-              <span>Show filter</span>
-            </button>
+            <form action="{{ url('/') }}" method="GET">
+                <button
+                        class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
+                        type="button"
+                        data-mdb-toggle="collapse"
+                        data-mdb-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        >
+                <span>Show filter</span>
+                </button>
             <!-- Collapsible wrapper  -->
-                                                {{-- filtr kategoria --}}
-            <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
-              <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="accordion-item" id="products_wrapper">
-                    <h2 class="accordion-header" id="headingTwo">
-                      <button
-                              class="accordion-button text-dark bg-light"
-                              type="button"
-                              data-mdb-toggle="collapse"
-                              data-mdb-target="#panelsStayOpen-collapseTwo"
-                              aria-expanded="true"
-                              aria-controls="panelsStayOpen-collapseTwo"
-                              >
-                        Kategorie
-                      </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
-                      <div class="accordion-body">
-                        @foreach ( $categories as $category )
-                        <div>
-                          <!-- Checked checkbox -->
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="filter[categories][]" id="category-{{ $category->id }}" value="{{ $category->id }}" />
-                            <label class="form-check-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
-                            {{-- <span class="badge badge-secondary float-end">120</span> --}}
-                          </div>
-                        </div>
-                        @endforeach
-                      </div>
-                    </div>
-                  </div>
-                                        {{-- Filtr cena --}}
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button
-                            class="accordion-button text-dark bg-light"
-                            type="button"
-                            data-mdb-toggle="collapse"
-                            data-mdb-target="#panelsStayOpen-collapseThree"
-                            aria-expanded="false"
-                            aria-controls="panelsStayOpen-collapseThree"
-                            >
-                      Price
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
-                    <div class="accordion-body">
-                      <div class="row mb-3">
-                        <div class="col-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="filter[price_min]">Min</label>
-                                <input type="number" id="filter[price_min]" class="form-control" name="filter[price_min]" placeholder="0" min="0"/>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-outline">
-                                <label class="form-label" for="filter[price_max]">Max</label>
-                                <input type="number" id="filter[price_max]" class="form-control" name="filter[price_max]" placeholder="1 000" min="0"/>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {{-- <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button
-                            class="accordion-button text-dark bg-light"
-                            type="button"
-                            data-mdb-toggle="collapse"
-                            data-mdb-target="#panelsStayOpen-collapseFour"
-                            aria-expanded="false"
-                            aria-controls="panelsStayOpen-collapseFour"
-                            >
-                      Size
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingThree">
-                    <div class="accordion-body">
-                      <input type="checkbox" class="btn-check border justify-content-center" id="btn-check1" checked autocomplete="off" />
-                      <label class="btn btn-white mb-1 px-1" style="width: 60px;" for="btn-check1">XS</label>
-                      <input type="checkbox" class="btn-check border justify-content-center" id="btn-check2" checked autocomplete="off" />
-                      <label class="btn btn-white mb-1 px-1" style="width: 60px;" for="btn-check2">SM</label>
-                      <input type="checkbox" class="btn-check border justify-content-center" id="btn-check3" checked autocomplete="off" />
-                      <label class="btn btn-white mb-1 px-1" style="width: 60px;" for="btn-check3">LG</label>
-                      <input type="checkbox" class="btn-check border justify-content-center" id="btn-check4" checked autocomplete="off" />
-                      <label class="btn btn-white mb-1 px-1" style="width: 60px;" for="btn-check4">XXL</label>
-                    </div>
-                  </div>
-                </div> --}}
+                                                {{-- filtr kategoria<livewire:filters/> --}}
 
-                {{-- <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingThree">
-                    <button
-                            class="accordion-button text-dark bg-light"
-                            type="button"
-                            data-mdb-toggle="collapse"
-                            data-mdb-target="#panelsStayOpen-collapseFive"
-                            aria-expanded="false"
-                            aria-controls="panelsStayOpen-collapseFive"
-                            >
-                      Ratings
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingThree">
-                    <div class="accordion-body">
-                      <!-- Default checkbox -->
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                        <label class="form-check-label" for="flexCheckDefault">
-                          <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                        </label>
-                      </div>
-                      <!-- Default checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                        <label class="form-check-label" for="flexCheckDefault">
-                          <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i>
-                        </label>
-                      </div>
-                      <!-- Default checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                        <label class="form-check-label" for="flexCheckDefault">
-                          <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-secondary"></i>
-                          <i class="fas fa-star text-secondary"></i>
-                        </label>
-                      </div>
-                        <!-- Default checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
-                        <label class="form-check-label" for="flexCheckDefault">
-                          <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-secondary"></i><i class="fas fa-star text-secondary"></i>
-                          <i class="fas fa-star text-secondary"></i>
-                        </label>
-                      </div>
+            <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item" id="products_wrapper">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button
+                                        class="accordion-button text-dark bg-light"
+                                        type="button"
+                                        data-mdb-toggle="collapse"
+                                        data-mdb-target="#panelsStayOpen-collapseTwo"
+                                        aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseTwo"
+                                        >
+                                Kategorie
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+                                <div class="accordion-body">
+                                @foreach ( $categories as $category )
+                                <div>
+                                    <!-- Checked checkbox -->
+                                    <div class="form-check">
+                                        <label class="form-check-label" >
+                                            <input class="form-check-input" type="checkbox" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, request('category', [])) ? 'checked' : '' }}/>
+                                            {{ $category->name }} id:{{ $category->id }}
+                                        </label>
+                                    {{-- <span class="badge badge-secondary float-end">120</span>name="filter[categories][]" id="category-{{ $category->id }}"for="category-{{ $category->id }}" --}}
+                                    </div>
+                                </div>
+                                @endforeach
+                                </div>
+                            </div>
+                            </div>
+                                                {{-- Filtr cena --}}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                            <button
+                                    class="accordion-button text-dark bg-light"
+                                    type="button"
+                                    data-mdb-toggle="collapse"
+                                    data-mdb-target="#panelsStayOpen-collapseThree"
+                                    aria-expanded="false"
+                                    aria-controls="panelsStayOpen-collapseThree"
+                                    >
+                                Price
+                            </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
+                            <div class="accordion-body">
+                                <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="form-outline">
+                                        <label class="form-label">
+                                            <input type="number" class="form-control" name="min_price" placeholder="0" min="0" value="{{ old('price_min', ($minPrice !== null) ? $minPrice : '') }}"/>
+                                            Min
+                                        </label>
+                                    </div>
+                                </div>
+                                {{--id="filter[price_max]"for="filter[price_max]" id="filter[price_min]"  for="filter[price_min]" --}}
+                                <div class="col-6">
+                                    <div class="form-outline">
+                                        <label class="form-label" >
+                                            <input type="number" class="form-control" name="max_price" placeholder="1 000" min="0" value="{{ old('max_price', ($maxPrice !== null) ? $maxPrice : '') }}"/>
+                                            Max
+                                        </label>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                </div> --}}
             </div>
-          </div>
-          <button id="filter-button" type="button" class="btn btn-white w-100 border border-secondary">{{ __('validation.attributes.filter') }}uj</button>
+            <button id="filter-button" type="submit" class="btn btn-white w-100 border border-secondary">{{ __('validation.attributes.filter') }}uj</button>
         </div>
-    </form>
+            </form>
         <!-- sidebar -->
-        <!-- content -->
+        <!-- content{ $products->total() }} -->
         <div class="col-lg-9">
           <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-            <strong class="d-block py-2">{{ $products->total() }} Produktów </strong>
+            <strong class="d-block py-2"> Produktów </strong>
                 <div class="ms-auto"> Widok:
-              <select class="form-select d-inline-block w-auto border pt-1" id="product_count_value">
-                <option
-                {{-- class="{{ $pageSize==5 ? 'active': '' }}"  --}}
-                value="5" wire:click.prevent="changePageSize(5)">5</option>
-                <option value="10" wire:click.prevent="changePageSize(10)">10</option>
-                <option value="15" wire:click.prevent="changePageSize(15)">15</option>
-                <option value="20" wire:click.prevent="changePageSize(20)">20</option>
-              </select>
+              {{--<select class="form-select d-inline-block w-auto border pt-1" id="product_count_value">
+                 <option class="{{ $pageSize==5 ? 'active': '' }}" value="5" wire:click.prevent="changePageSize(5)">5</option>
+                <option class="{{ $pageSize==10 ? 'active': '' }}" value="10" wire:click.prevent="changePageSize(10)">10</option>
+                <option class="{{ $pageSize==15 ? 'active': '' }}" value="15" wire:click.prevent="changePageSize(15)">15</option>
+                <option class="{{ $pageSize==20 ? 'active': '' }}" value="20" wire:click.prevent="changePageSize(20)">20</option>
+              </select>--}}
+              {{-- <div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class=" dropdown-item" value="5" wire:click.prevent="changePageSize(5)">5</a></li>
+                        <li><a class=" dropdown-item" value="10" wire:click.prevent="changePageSize(10)">10</a></li>
+                        <li><a class=" dropdown-item" value="15" wire:click.prevent="changePageSize(15)">15</a></li>
+                    </ul>
+                </div>
+            </div> --}}
+            {{-- protected $listeners = ['updatePageSize' => 'changePageSize'];
+            public $pageSize=5;
+
+            public function changePageSize($size){
+                $this->pageSize=$size;
+            }
+            public function render()
+            {
+                return view('livewire.filters',[
+                    'products' => Product::paginate($this->pageSize),
+                    'categories' => ProductCategory::orderBy('name', 'asc')->get(),
+                    'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
+                ]);
+            } --}}
 
               <select class="form-select d-inline-block w-auto border pt-1">
                 <option value="0">Best match</option>
@@ -224,14 +179,70 @@
             </div>
           </header>
 
-          <div id="product_wrapper"> {{-- Produkty --}}
-                <livewire:productlist />
+          <div id="product_wrapper"> {{-- Produkty <livewire:productlist />--}}
+            <div>
+                @foreach ($filteredProducts as $product)
+                      <div class="row justify-content-center mb-3">
+                        <div class="col-md-12">
+                          <div class="card shadow-0 border rounded-3">
+                            <div class="card-body">
+                              <div class="row g-0">
+                                <div class="col-xl-3 col-md-4 d-flex justify-content-center">
+                                  <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
+                                        <a href="{{ route('products.details', $product->id) }}" class="float-right">
+                                    @if(!is_null($product->image_path))
+                                        <img src="{{ asset('storage/' . $product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                                    @else
+                                        <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                                    @endif
+                                        </a>
+                                    <a href="#!">
+                                      <div class="hover-overlay">
+                                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                                      </div>
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="col-xl-6 col-md-5 col-sm-7">
+                                    <h5>{{ $product->name }} ct_id:{{ $product->category_id }}</h5>
+                                    <div class="d-flex flex-row">
+                                      <div class="text-warning mb-1 me-2">
+                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                                        <span class="ms-1"> 3.5 </span>
+                                      </div>
+                                      <span class="text-muted"> 910 orders </span>
+                                    </div>
+                                    <p class="text mb-4 mb-md-0">
+                                      {{ $product->description }}
+                                    </p>
+                                  </div>
+                                  <div class="col-xl-3 col-md-3 col-sm-5">
+                                    <div class="d-flex flex-row align-items-center mb-1">
+                                      <h4 class="mb-1 me-1">{{ $product->price }} PLN </h4>
+                                    </div>
+                                    <h6 class="text-success">Free shipping</h6>
+                                    <div class="mt-4">
+                                        {{-- data-id="{{ $product->id }}" @guest disabled @endguest --}}
+                                        <button class="btn btn-success btn-sm add_cart_button" wire:click="addToCart({{ $product->id }})">
+                                            <i class="fas fa-cart-plus"></i> Dodaj do koszyka
+                                        </button>
+                                      <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg px-1"></i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                      @endforeach
+            </div>
+
             </div> {{-- Produkty --}}
 
 
           <!-- Pagination -->
           <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-                {!! $products->links() !!}
+                { $products->links() }}
           </nav>
           <!-- Pagination -->
         </div>

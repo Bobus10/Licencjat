@@ -1,10 +1,15 @@
 <div class="container">
     @if ( $cartItems->count() > 0 )
     <div class="block-heading pb-2">
-      <h2>W Koszyku jest {{ $cartItems->count() }} przedmiotów</h2>
-      <a href="/"><button class="btn btn-primary ">Wróć do zakupów</button></a>
-      <a href=""><button class="btn btn-danger">Wyczyść koszyk</button></a>
+        @if ( $cartItems->count() == 1)
+            <h2>W Koszyku jest {{ $cartItems->count() }} przedmiot</h2>
+        @else
+            <h2>W Koszyku są {{ $cartItems->count() }} przedmioty</h2>
+        @endif
+        <a href="/"><button class="btn btn-primary ">Wróć do zakupów</button></a>
+        <a href=""><button class="btn btn-danger">Wyczyść koszyk</button></a>
     </div>
+
     <div class="content">
         <div class="row">
         <div class="col">
@@ -53,6 +58,7 @@
                 </div>
             </div>
         @endforeach
+
         </div>
             <div class="col col-lg-3 card border-secondary pb-2">
                 <div class="summary ">
@@ -64,8 +70,6 @@
                     <button type="button" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Checkout</button>
                 </div>
             </div>
-
-
 
     @else
         <div class="block-heading pb-2 text-center">

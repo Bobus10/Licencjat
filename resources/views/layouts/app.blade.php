@@ -65,7 +65,8 @@ home
                                         <a class="dropdown-item" href="/users/list">{{ __('shop.user.index_title') }}</a>
                                         <a class="dropdown-item" href="{{ route('products.index') }}">{{ __('shop.product.index_title') }}</a>
                                     @endcan
-                                    <a class="dropdown-item" href="{{ route('orders.index') }}">Zamówienia</a>
+                                    {{--<hr class="dropdown-divider"> <a class="dropdown-item" href="{{ route('orders.index') }}">Zamówienia</a> --}}
+
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -80,7 +81,9 @@ home
                                 <a class="nav-link" href="/cart">Ulubione</a>
                             </li>
                             <li class="nav-item">
-                                @livewire('cart-counter')
+                                <a class="nav-link" href="{{ route('shopping-cart') }}">koszyk</a>
+                                {{-- @livewire('cart-counter') --}}
+                                 {{-- <livewire:cart-counter/> --}}
                             </li>
                         @endguest
                     </ul>
