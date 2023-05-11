@@ -128,12 +128,12 @@
           <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
             <strong class="d-block py-2"> Produktów </strong>
                 <div class="ms-auto"> Widok:
-              {{--<select class="form-select d-inline-block w-auto border pt-1" id="product_count_value">
+              {{-- <select class="form-select d-inline-block w-auto border pt-1" id="product_count_value">
                  <option class="{{ $pageSize==5 ? 'active': '' }}" value="5" wire:click.prevent="changePageSize(5)">5</option>
                 <option class="{{ $pageSize==10 ? 'active': '' }}" value="10" wire:click.prevent="changePageSize(10)">10</option>
                 <option class="{{ $pageSize==15 ? 'active': '' }}" value="15" wire:click.prevent="changePageSize(15)">15</option>
                 <option class="{{ $pageSize==20 ? 'active': '' }}" value="20" wire:click.prevent="changePageSize(20)">20</option>
-              </select>--}}
+              </select> --}}
               {{-- <div>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -242,7 +242,7 @@
 
           <!-- Pagination -->
           <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-                { $products->links() }}
+            {{ $filteredProducts->appends(request()->query())->links() }}
           </nav>
           <!-- Pagination -->
         </div>
