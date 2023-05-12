@@ -28,10 +28,10 @@ use App\Http\Livewire\Filters;
 
 // Route::get('/', function () {
 //     return view('welcome');
-
-Route::get('/', WelcomeController::class);
+Route::get('/', [WelcomeController::class, 'index']);
+//Route::get('/', WelcomeController::class);
 //Livewire::component('filters', Filters::class);
-Livewire::component('productlist', ProductList::class);
+//Livewire::component('productlist', ProductList::class);
 
 Route::middleware(['auth'])->group(function (){
     Route::middleware(['can:isAdmin'])->group(function (){

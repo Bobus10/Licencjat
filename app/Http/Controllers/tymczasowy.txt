@@ -1,51 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Routing\Controller;
-use App\Models\Product;
-use Illuminate\Http\Request;
-use App\Models\ProductCategory;
-use App\Http\Livewire\Filters;
-use App\Http\Livewire\Productlist;
-use Illuminate\Support\Facades\Session;
-
-
-class WelcomeController extends Controller
-{
-    public $pageSize=5;
-
-    public function index(Request $request)
-    {
-        $categories = $request->input('category', []);
-        $minPrice = $request->input('min_price');
-        $maxPrice = $request->input('max_price');
-
-        $products = Product::query();
-
-        if (!empty($categories)) {
-            $products->whereIn('category_id', $categories);
-        }
-
-        if ($minPrice !== null) {
-           $products->where('price', '>=', $minPrice);
-       }
-       if ($maxPrice !== null && $maxPrice > 0) {
-        $products->where('price', '<=', $maxPrice);
-        }
-
-        $products = $products->paginate($this->pageSize);
-
-     return view('welcome', [
-         'products' => $products,
-         'categories' => ProductCategory::orderBy('name', 'asc')->get(),
-         'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
-         'minPrice' => $minPrice,
-         'maxPrice' => $maxPrice,
-     ]);
- }
-}
-// //  }
+WelcomeController
 // public function __invoke(Request $request)
 // {
 //     $categories = $request->input('category', []);
@@ -98,3 +51,52 @@ class WelcomeController extends Controller
 // }
 //}
 
+productlist kontroler
+   use WithPagination;
+
+    public $pageSize = 5;
+
+    public function mount($pageSize)
+    {
+        $this->pageSize = $pageSize;
+        $this->setFiltersFromQueryParams();
+    }
+
+    public function updating($name, $value)
+    {
+        $this->resetPage();
+    }
+
+    public function getFilteredProducts()
+    {
+        $categories = Request::input('category', []);
+        $minPrice = Request::input('min_price');
+        $maxPrice = Request::input('max_price');
+
+        $query = Product::query();
+
+        if (!empty($categories)) {
+            $query->whereIn('category_id', $categories);
+        }
+
+        if ($minPrice !== null) {
+            $query->where('price', '>=', $minPrice);
+        }
+
+        if ($maxPrice !== null && $maxPrice > 0) {
+            $query->where('price', '<=', $maxPrice);
+        }
+
+        return $query->paginate($this->pageSize);
+    }
+
+    public function setFiltersFromQueryParams()
+    {
+        $categories = Request::input('category', []);
+        $minPrice = Request::input('min_price');
+        $maxPrice = Request::input('max_price');
+
+        Session::put('category_filters', $categories);
+        Session::put('min_price_filter', $minPrice);
+        Session::put('max_price_filter', $maxPrice);
+    }

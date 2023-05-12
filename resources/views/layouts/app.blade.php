@@ -81,7 +81,7 @@ home
                                 <a class="nav-link" href="/cart">Ulubione</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('shopping-cart') }}">koszyk</a>
+                                {{-- <a class="nav-link" href="{{ route('shopping-cart') }}">koszyk</a> --}}
                                 {{-- @livewire('cart-counter') --}}
                                  {{-- <livewire:cart-counter/> --}}
                             </li>
