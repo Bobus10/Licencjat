@@ -2,28 +2,7 @@
 @section('content')
 <!--Main Navigation-->
 <header>
-    <!-- Jumbotron -->
-        <!-- Jumbotron -->
-
-    <!-- Heading -->
-    <div class="bg-primary mb-4">
-        <div class="container py-4">
-          <h3 class="text-white mt-2">Men's wear</h3>
-          <!-- Breadcrumb -->
-          <nav class="d-flex mb-2">
-            <h6 class="mb-0">
-              <a href="" class="text-white-50">Home</a>
-              <span class="text-white-50 mx-2"> > </span>
-              <a href="" class="text-white-50">Library</a>
-              <span class="text-white-50 mx-2"> > </span>
-              <a href="" class="text-white"><u>Data</u></a>
-            </h6>
-          </nav>
-          <!-- Breadcrumb -->
-        </div>
-      </div>
-      <!-- Heading -->
-    </header>
+</header>
 
     <!-- sidebar + content -->
                                         <!-- tu dodac action route -->
@@ -32,7 +11,6 @@
           <!-- sidebar -->
         <div class="col-lg-3">
             <!-- Toggle button -->
-            <form action="{{ url('/') }}" method="GET">
                 <button
                         class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
                         type="button"
@@ -45,10 +23,11 @@
                 <span>Show filter</span>
                 </button>
             <!-- Collapsible wrapper  -->
-                                                {{-- filtr kategoria<livewire:filters/> --}}
+            {{-- filtr kategoria <livewire:filters :categories="$categories" wire:pageSizeUpdated="changePageSize" />--}}
 
-            <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
-                        <div class="accordion" id="accordionPanelsStayOpenExample">
+             <form action="{{ request()->fullUrl() }}" method="GET">
+                <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item" id="products_wrapper">
                             <h2 class="accordion-header" id="headingTwo">
                                 <button
@@ -78,7 +57,7 @@
                                 @endforeach
                                 </div>
                             </div>
-                            </div>
+                        </div>
                                                 {{-- Filtr cena --}}
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
@@ -94,80 +73,53 @@
                             </button>
                             </h2>
                             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
-                            <div class="accordion-body">
-                                <div class="row mb-3">
-                                <div class="col-6">
-                                    <div class="form-outline">
-                                        <label class="form-label">
-                                            <input type="number" class="form-control" name="min_price" placeholder="0" min="0" value="{{ old('price_min', ($minPrice !== null) ? $minPrice : '') }}"/>
-                                            Min
-                                        </label>
+                                <div class="accordion-body">
+                                    <div class="row mb-3">
+                                        <div class="col-6">
+                                            <div class="form-outline">
+                                                <label class="form-label">
+                                                    <input type="number" class="form-control" name="min_price" placeholder="0" min="0" value="{{ old('price_min', ($minPrice !== null) ? $minPrice : '') }}"/>
+                                                    Min
+                                                </label>
+                                            </div>
+                                        </div>
+                                    {{--id="filter[price_max]"for="filter[price_max]" id="filter[price_min]"  for="filter[price_min]" --}}
+                                        <div class="col-6">
+                                            <div class="form-outline">
+                                                <label class="form-label" >
+                                                    <input type="number" class="form-control" name="max_price" placeholder="1 000" min="0" value="{{ old('max_price', ($maxPrice !== null) ? $maxPrice : '') }}"/>
+                                                    Max
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                {{--id="filter[price_max]"for="filter[price_max]" id="filter[price_min]"  for="filter[price_min]" --}}
-                                <div class="col-6">
-                                    <div class="form-outline">
-                                        <label class="form-label" >
-                                            <input type="number" class="form-control" name="max_price" placeholder="1 000" min="0" value="{{ old('max_price', ($maxPrice !== null) ? $maxPrice : '') }}"/>
-                                            Max
-                                        </label>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
                             </div>
                         </div>
+
                     </div>
-            </div>
-            <button id="filter-button" type="submit" class="btn btn-white w-100 border border-secondary">{{ __('validation.attributes.filter') }}uj</button>
-        </div>
+                </div>
+                <button class="btn btn-white w-100 border border-secondary">{{ __('validation.attributes.filter') }}uj</button>
             </form>
+        </div>
         <!-- sidebar -->
-        <!-- content{ $products->total() }} -->
+        <!-- content -->
         <div class="col-lg-9">
           <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
             <strong class="d-block py-2"> Produktów </strong>
                 <div class="ms-auto"> Widok:
-              {{-- <select class="form-select d-inline-block w-auto border pt-1" id="product_count_value">
-                 <option class="{{ $pageSize==5 ? 'active': '' }}" value="5" wire:click.prevent="changePageSize(5)">5</option>
-                <option class="{{ $pageSize==10 ? 'active': '' }}" value="10" wire:click.prevent="changePageSize(10)">10</option>
-                <option class="{{ $pageSize==15 ? 'active': '' }}" value="15" wire:click.prevent="changePageSize(15)">15</option>
-                <option class="{{ $pageSize==20 ? 'active': '' }}" value="20" wire:click.prevent="changePageSize(20)">20</option>
-              </select> --}}
-              {{-- <div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class=" dropdown-item" value="5" wire:click.prevent="changePageSize(5)">5</a></li>
-                        <li><a class=" dropdown-item" value="10" wire:click.prevent="changePageSize(10)">10</a></li>
-                        <li><a class=" dropdown-item" value="15" wire:click.prevent="changePageSize(15)">15</a></li>
-                    </ul>
-                </div>
-            </div> --}}
-            {{-- protected $listeners = ['updatePageSize' => 'changePageSize'];
-            public $pageSize=5;
-
-            public function changePageSize($size){
-                $this->pageSize=$size;
-            }
-            public function render()
-            {
-                return view('livewire.filters',[
-                    'products' => Product::paginate($this->pageSize),
-                    'categories' => ProductCategory::orderBy('name', 'asc')->get(),
-                    'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
-                ]);
-            } --}}
-
-              <select class="form-select d-inline-block w-auto border pt-1">
-                <option value="0">Best match</option>
-                <option value="1">Recommended</option>
-                <option value="2">High rated</option>
-                <option value="3">Randomly</option>
-              </select>
-
+                    <select class="form-select d-inline-block w-auto border pt-1" wire:model="pageSize">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <select class="form-select d-inline-block w-auto border pt-1">
+                        <option value="0">Best match</option>
+                        <option value="1">Recommended</option>
+                        <option value="2">High rated</option>
+                        <option value="3">Randomly</option>
+                    </select>
               <div class="btn-group shadow-0 border">
                 <a href="#" class="btn btn-light" title="List view">
                   <i class="fa fa-bars fa-lg"></i>
@@ -179,72 +131,14 @@
             </div>
           </header>
 
-          <div id="product_wrapper"> {{-- Produkty <livewire:productlist />--}}
-            <div>
-                @foreach ($filteredProducts as $product)
-                      <div class="row justify-content-center mb-3">
-                        <div class="col-md-12">
-                          <div class="card shadow-0 border rounded-3">
-                            <div class="card-body">
-                              <div class="row g-0">
-                                <div class="col-xl-3 col-md-4 d-flex justify-content-center">
-                                  <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
-                                        <a href="{{ route('products.details', $product->id) }}" class="float-right">
-                                    @if(!is_null($product->image_path))
-                                        <img src="{{ asset('storage/' . $product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
-                                    @else
-                                        <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
-                                    @endif
-                                        </a>
-                                    <a href="#!">
-                                      <div class="hover-overlay">
-                                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                                      </div>
-                                    </a>
-                                  </div>
-                                </div>
-                                <div class="col-xl-6 col-md-5 col-sm-7">
-                                    <h5>{{ $product->name }} ct_id:{{ $product->category_id }}</h5>
-                                    <div class="d-flex flex-row">
-                                      <div class="text-warning mb-1 me-2">
-                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-                                        <span class="ms-1"> 3.5 </span>
-                                      </div>
-                                      <span class="text-muted"> 910 orders </span>
-                                    </div>
-                                    <p class="text mb-4 mb-md-0">
-                                      {{ $product->description }}
-                                    </p>
-                                  </div>
-                                  <div class="col-xl-3 col-md-3 col-sm-5">
-                                    <div class="d-flex flex-row align-items-center mb-1">
-                                      <h4 class="mb-1 me-1">{{ $product->price }} PLN </h4>
-                                    </div>
-                                    <h6 class="text-success">Free shipping</h6>
-                                    <div class="mt-4">
-                                        {{-- data-id="{{ $product->id }}" @guest disabled @endguest --}}
-                                        <button class="btn btn-success btn-sm add_cart_button" wire:click="addToCart({{ $product->id }})">
-                                            <i class="fas fa-cart-plus"></i> Dodaj do koszyka
-                                        </button>
-                                      <a href="#!" class="btn btn-light border px-2 pt-2 icon-hover"><i class="fas fa-heart fa-lg px-1"></i></a>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-                      @endforeach
-            </div>
+          <div id="product_wrapper" wire:target="pageSizeUpdated, updatedFilters" wire:loading>
+            Loading...
+        </div>
 
-            </div> {{-- Produkty --}}
+        <livewire:productlist :pageSize="$pageSize" />
+            {{-- Produkty --}}
 
 
-          <!-- Pagination -->
-          <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
-            {{ $filteredProducts->appends(request()->query())->links() }}
-          </nav>
-          <!-- Pagination -->
         </div>
       </div>
     </div>
@@ -368,11 +262,11 @@
     </div>
   </footer>
   <!-- Footer -->
+  @livewireScripts
 @endsection
 @section('javascript')
     const WELCOME_DATA ={
         storagePath: "{{ asset('storage')}}/",
-        defaultImageUrl: "{{ $defaultImageUrl }}",
         addToCart: '{{ url('cart') }}/',
     }
 @endsection

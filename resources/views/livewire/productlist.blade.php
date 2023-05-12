@@ -1,6 +1,7 @@
 <div>
+    <div class="row justify-content-center mb-3">
     @foreach ($products as $product)
-          <div class="row justify-content-center mb-3">
+
             <div class="col-md-12">
               <div class="card shadow-0 border rounded-3">
                 <div class="card-body">
@@ -22,7 +23,7 @@
                       </div>
                     </div>
                     <div class="col-xl-6 col-md-5 col-sm-7">
-                        <h5>{{ $product->name }}</h5>
+                        <h5>{{ $product->name }} ct_id:{{ $product->category_id }}</h5>
                         <div class="d-flex flex-row">
                           <div class="text-warning mb-1 me-2">
                             <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
@@ -51,6 +52,50 @@
                   </div>
                 </div>
             </div>
-          </div>
+
           @endforeach
+        </div>
+        <!-- Pagination -->
+        {{-- <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
+        {{ $products->appends(request()->query())->links() }}
+        </nav> --}}
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-3">
+            <ul class="pagination">
+                @if ($products->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link">&laquo;</span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" wire:click="gotoPage(1)" href="#">&laquo;</a>
+                    </li>
+                @endif
+
+                @foreach ($products->links()->elements as $element)
+                    @foreach ($element as $page => $url)
+                        @if ($page == $products->currentPage())
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">{{ $page }}</span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" wire:click="gotoPage({{ $page }})" href="#">{{ $page }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+                @endforeach
+
+                @if ($products->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" wire:click="gotoPage({{ $products->lastPage() }})" href="#">&raquo;</a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link">&raquo;</span>
+                    </li>
+                @endif
+            </ul>
+        </nav>
+
+        <!-- Pagination -->
 </div>

@@ -1,15 +1,19 @@
 <?php
 
-use App\Http\Controllers\CartController;
+
+use Livewire\Livewire;
+use App\Http\Livewire\Productlist;
+use App\Http\Livewire\ShoppingCart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\OrderController;
-use App\Http\Livewire\ShoppingCart;
+use App\Http\Livewire\Filters;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +28,10 @@ use App\Http\Livewire\ShoppingCart;
 
 // Route::get('/', function () {
 //     return view('welcome');
-// });
-Route::get('/', [WelcomeController::class, 'index']);
 
-
+Route::get('/', WelcomeController::class);
+//Livewire::component('filters', Filters::class);
+Livewire::component('productlist', ProductList::class);
 
 Route::middleware(['auth'])->group(function (){
     Route::middleware(['can:isAdmin'])->group(function (){
