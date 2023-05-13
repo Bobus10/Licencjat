@@ -17,6 +17,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireStyles
+    @php
+        use App\Models\ShoppingCart;
+    @endphp
 </head>
 
 <body>
@@ -81,9 +84,13 @@ home
                                 <a class="nav-link" href="/cart">Ulubione</a>
                             </li>
                             <li class="nav-item">
-                                {{-- <a class="nav-link" href="{{ route('shopping-cart') }}">koszyk</a> --}}
-                                {{-- @livewire('cart-counter') --}}
-                                 {{-- <livewire:cart-counter/> --}}
+                                <a class="nav-link position-relative" href="{{ route('shopping-cart') }}">koszyk
+                                    <span class="position-absolute top-75 start-100 translate-middle badge rounded-pill bg-success">
+                                        {{ $cartItems = ShoppingCart::with('product')->where(['user_id'=>auth()->user()->id])->get()->count() }}
+
+                                    </span>
+                                </a>
+{{-- <livewire:cart-counter/> --}}
                             </li>
                         @endguest
                     </ul>

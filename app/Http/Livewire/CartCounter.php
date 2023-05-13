@@ -7,17 +7,16 @@ use App\Models\Shoppingcart;
 
 class Cartcounter extends Component
 {
-    public $total = 0;
+    // public $total = 0;
 
-     protected $listeners = ['updateCartCount' => 'getCartItemCount'];
+    // protected $listeners = ['updateCartCount' => 'getCartItemCount'];
 
-    public function render()
-    {
-         $this->getCartItemCount();
-
-        return view('livewire.cart-counter');
-    }
-    public function getCartItemCount(){
-        $this->total = shoppingcart::whereUserId(auth()->user()->id)->count();
-    }
+    // public function render()
+    // {
+    //     $this->getCartItemCount();
+    //     return view('livewire.cart-counter');
+    // }
+    // public function getCartItemCount(){
+    //     $this->total = shoppingcart::whereUserId(auth()->user()->id)->count();
+    // }
 }

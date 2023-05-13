@@ -21,8 +21,8 @@ class ShoppingCart extends Component
             $this->sub_total += $item->product->price * $item->quantity;
         }
         $this->total = $this->sub_total - $this->tax + $this->shipping;
-
         return view('livewire.shopping-cart',[
+            'cartItems' => $this->cartItems,
             'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
         ]);
     }
@@ -31,7 +31,7 @@ class ShoppingCart extends Component
         $cart = Cart::find($id);
         if($cart){
             $cart->increment('quantity');
-            $this->emit('updateCartCount');
+            $this->getCartItemCount();
         }
     }
 
@@ -40,7 +40,7 @@ class ShoppingCart extends Component
         $cart = Cart::whereId($id)->first();
         if($cart && $cart->quantity > 1){
             $cart->decrement('quantity');
-            $this->emit('updateCartCount');
+            $this->getCartItemCount();
         }
     }
 
@@ -52,4 +52,7 @@ class ShoppingCart extends Component
     // public function destroyAll(){
     //     return redirect()->back();
     // }
+    public function getCartItemCount(){
+        $this->cartItems = shoppingcart::whereUserId(auth()->user()->id)->count();
+    }
 }
