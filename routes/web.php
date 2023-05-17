@@ -50,10 +50,12 @@ Route::middleware(['auth'])->group(function (){
     });
     //koszyk
     Route::get('/cart', [CartController::class, 'index'])->name('shopping-cart');
+    Route::get('/cart/all', [ShoppingCart::class, 'destroyAll'])->name('shopping-cart.destroyAll');
     Route::get('/cart/{item}', [ShoppingCart::class, 'destroy'])->name('shopping-cart.destroy');
     //zamówienia
-    //Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    //Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/details/{order}', [OrderController::class, 'showOrders'])->name('orders.details');
     //finalizacja zamowienia
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     //strona po zalogowaniu

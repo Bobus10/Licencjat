@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Http\Livewire\Filters;
 use App\Http\Livewire\Productlist;
+use App\Http\Livewire\ShoppingCart;
 use Illuminate\Support\Facades\Session;
 
 

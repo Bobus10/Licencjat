@@ -3,6 +3,9 @@
 <!--Main Navigation-->
 <header>
 </header>
+@php
+    use App\Http\Livewire\ShoppingCart;
+@endphp
 
     <!-- sidebar + content -->
                                         <!-- tu dodac action route -->
@@ -106,8 +109,8 @@
         <!-- content -->
         <div class="col-lg-9">
           <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-            <strong class="d-block py-2"> Produktów </strong>
-                <div class="ms-auto"> Widok:
+            <strong class="d-block py-2">{{ $products->count() }} Produktów </strong>
+                {{-- <div class="ms-auto"> Widok:
                     <select class="form-select d-inline-block w-auto border pt-1" wire:model="pageSize">
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -120,15 +123,15 @@
                         <option value="2">High rated</option>
                         <option value="3">Randomly</option>
                     </select>
-              <div class="btn-group shadow-0 border">
-                <a href="#" class="btn btn-light" title="List view">
-                  <i class="fa fa-bars fa-lg"></i>
-                </a>
-                <a href="#" class="btn btn-light active" title="Grid view">
-                  <i class="fa fa-th fa-lg"></i>
-                </a>
-              </div>
-            </div>
+                    <div class="btn-group shadow-0 border">
+                        <a href="#" class="btn btn-light" title="List view">
+                        <i class="fa fa-bars fa-lg"></i>
+                        </a>
+                        <a href="#" class="btn btn-light active" title="Grid view">
+                        <i class="fa fa-th fa-lg"></i>
+                        </a>
+                    </div>
+            </div> --}}
           </header>
 
           <div id="product_wrapper" wire:target="pageSizeUpdated, updatedFilters" wire:loading>
@@ -177,9 +180,10 @@
                                     <div class="d-flex flex-row align-items-center mb-1">
                                       <h4 class="mb-1 me-1">{{ $product->price }} PLN </h4>
                                     </div>
-                                    <h6 class="text-success">Free shipping</h6>
+                                    <h6 class="text-success">Dostawa: {{ ShoppingCart::$shipping }}</h6>
                                     <div class="mt-4">
                                         {{-- data-id="{{ $product->id }}" @guest disabled @endguest --}}
+                                        {{-- dodaj do koszyka --}}
                                         <livewire:productlist :product="$product"/>
 
                                     </div>
@@ -199,7 +203,7 @@
 
 
   <!-- Footer -->
-  <footer class="text-center text-lg-start text-muted bg-primary mt-3">
+  {{-- <footer class="text-center text-lg-start text-muted bg-primary mt-3">
     <!-- Section: Links  -->
     <section class="">
       <div class="container text-center text-md-start pt-4 pb-4">
@@ -314,7 +318,7 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer> --}}
   <!-- Footer -->
   @livewireScripts
 @endsection

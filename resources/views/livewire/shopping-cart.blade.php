@@ -7,9 +7,9 @@
             <h2>W Koszyku są {{ $cartItems->count() }} przedmioty</h2>
         @endif
         <a href="/"><button class="btn btn-primary ">Wróć do zakupów</button></a>
-        <a href=""><button class="btn btn-danger">Wyczyść koszyk</button></a>
+        <a href="{{ route('shopping-cart.destroyAll') }}"><button class="btn btn-danger">Wyczyść koszyk</button></a>
     </div>
-
+{{-- , Auth()->user()->id --}}
     <div class="content">
         <div class="row">
         <div class="col">
@@ -67,7 +67,10 @@
                     <div class="summary-item"><span class="text">Discount: </span><span class="price"> {{ $tax }} PLN</span></div>
                     <div class="summary-item"><span class="text">Shipping: </span><span class="price"> {{ $shipping }} PLN</span></div>
                     <div class="summary-item"><span class="text-success">Total: </span><span class="price text-success"> {{ $total }} PLN</span></div>
-                    <button type="button" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Checkout</button>
+                    <form action="{{ route('orders.store') }}" method="POST">
+                        @csrf
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Checkout</button>
+                    </form>
                 </div>
             </div>
 

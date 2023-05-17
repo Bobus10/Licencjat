@@ -17,7 +17,7 @@ class ProductCategorySeeder extends Seeder
             ['name' => 'Akcesoria'],
             ['name' => 'Smartfony'],
             ['name' => 'Smartwatche'],
-            ['name' => 'Ochrona telefonu'],
+            // ['name' => 'Ochrona telefonu'],
             ['name' => 'Laptopy'],
             ['name' => 'Komputery'],
             ['name' => 'Urządzenia peryferyjne'],

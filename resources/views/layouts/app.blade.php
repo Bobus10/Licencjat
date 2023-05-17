@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-home
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -68,7 +68,8 @@ home
                                         <a class="dropdown-item" href="/users/list">{{ __('shop.user.index_title') }}</a>
                                         <a class="dropdown-item" href="{{ route('products.index') }}">{{ __('shop.product.index_title') }}</a>
                                     @endcan
-                                    {{--<hr class="dropdown-divider"> <a class="dropdown-item" href="{{ route('orders.index') }}">Zamówienia</a> --}}
+                                    <a class="dropdown-item" href="{{ route('orders.index') }}">Zamówienia</a>
+                                    <hr class="dropdown-divider">
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -80,9 +81,9 @@ home
                                     </form>
                                 </div>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="/cart">Ulubione</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link position-relative" href="{{ route('shopping-cart') }}">koszyk
                                     <span class="position-absolute top-75 start-100 translate-middle badge rounded-pill bg-success">
