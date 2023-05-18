@@ -14,7 +14,17 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col"> <a href="{{ URL('/') }}"> Sklep </a></th>
+                                <th scope="col"> <a href="{{ route('shopping-cart') }}"> koszyk </a></th>
+                                <th scope="col"> <a href="{{ route('orders.index') }}"> zamówienia </a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

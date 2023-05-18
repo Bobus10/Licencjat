@@ -59,8 +59,6 @@ class ShoppingCart extends Component
         return redirect()->back();
     }
 
-    // ShoppingCart::where('user_id', $user->id)->delete();
-    //$user = Auth::user();
     public function getCartItemCount(){
         $this->cartItems = Cart::whereUserId(auth()->user()->id)->count();
     }

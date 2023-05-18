@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function (){
     //zamówienia
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-    Route::get('/orders/details/{order}', [OrderController::class, 'showOrders'])->name('orders.details');
+    Route::get('/orders/{datetime}', [OrderController::class, 'showOrders'])->name('orders.details');
     //finalizacja zamowienia
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     //strona po zalogowaniu

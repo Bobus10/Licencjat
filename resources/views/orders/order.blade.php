@@ -6,31 +6,33 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">uzytkownik</th>
-                    <th scope="col">{{ __('validation.attributes.name') }}</th>
+                    <th scope="col">Data / godzina</th>
                     <th scope="col">{{ __('validation.attributes.price') }}</th>
-                    <th scope="col">{{ __('validation.attributes.amount') }}</th>
-                    <th scope="col">guzik</th>
+                    <th scope="col">Liczba przedmiotów</th>
+                    <th scope="col">Akcja</th>
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $li=1;
+                    $sumPrice =0;
+                    $sumQty =0;
+                    $shippment = 9.99;
+                @endphp
                 @foreach ($orders as $order)
-                @if ( Auth::user()->id == $order->user_id)
                     <tr>
-                        <th scope="row">{{ $order->id }}</th>
-                        <td>{{ $order->user_id }}</td>
-                        <td>{{ $order->products->name }}</td>
-                        <td>{{ $order->price }}</td>
-                        <td>{{ $order->quantity }}</td>
-                        <td><a href="{{ route('orders.details', $order->id) }}" class="float-right">
-                            <button type="button" class="btn btn-success"> P </button></a>p
+                        <td>{{ $li++}}</td>
+                        <td>{{ $order['datetime'] }}</td>
+                        <td>{{ $order['sumPrice']+$shippment }}</td>
+                        <td>{{ $order['sumQty'] }}</td>
+                        <td>
+                            <a href="{{ route('orders.details', $order['datetime']) }}" class="float-right">
+                            <button type="button" class="btn btn-success">Podgląd</button></a>
                         </td>
                     </tr>
-                    @endif
                 @endforeach
             </tbody>
         </table>
-        {{ $orders->links() }}
     </div>
 </div>
 @endsection
