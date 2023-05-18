@@ -2,6 +2,11 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-6">
+            <h1>Zamówienia <i class="fa-solid fa-truck"></i></h1>
+        </div>
+    </div>
+    <div class="row">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -27,7 +32,8 @@
                         <td>{{ $order['sumQty'] }}</td>
                         <td>
                             <a href="{{ route('orders.details', $order['datetime']) }}" class="float-right">
-                            <button type="button" class="btn btn-success">Podgląd</button></a>
+                            <button type="button" class="btn btn-success">
+                                <i class="fa-regular fa-eye"></i> </button></a>
                         </td>
                     </tr>
                 @endforeach

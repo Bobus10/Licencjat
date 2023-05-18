@@ -13,6 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link  rel="stylesheet" href="{{ asset('fontawesome-free-6.4.0-web/css/all.min.css') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -60,21 +61,24 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name }}
+                                    {{ Auth::user()->first_name }} <i class="fa-regular fa-user"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @can('isAdmin')
-                                        <a class="dropdown-item" href="/users/list">{{ __('shop.user.index_title') }}</a>
-                                        <a class="dropdown-item" href="{{ route('products.index') }}">{{ __('shop.product.index_title') }}</a>
+                                        <a class="dropdown-item" href="/users/list">
+                                            <i class="fa-solid fa-users"></i> {{ __('shop.user.index_title') }}</a>
+                                        <a class="dropdown-item" href="{{ route('products.index') }}">
+                                            <i class="fa-solid fa-rectangle-list"></i> {{ __('shop.product.index_title') }} </a>
                                     @endcan
-                                    <a class="dropdown-item" href="{{ route('orders.index') }}">Zamówienia</a>
-                                    <hr class="dropdown-divider">
+                                        <a class="dropdown-item" href="{{ route('orders.index') }}">
+                                            <i class="fa-solid fa-truck"></i> Zamówienia </a>
+                                        <hr class="dropdown-divider">
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }} <i class="fa-solid fa-right-from-bracket"></i>
+                                        </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -85,7 +89,7 @@
                                 <a class="nav-link" href="/cart">Ulubione</a>
                             </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link position-relative" href="{{ route('shopping-cart') }}">koszyk
+                                <a class="nav-link position-relative" href="{{ route('shopping-cart') }}"><i class="fa-solid fa-cart-shopping"></i>
                                     <span class="position-absolute top-75 start-100 translate-middle badge rounded-pill bg-success">
                                         {{ $cartItems = ShoppingCart::with('product')->where(['user_id'=>auth()->user()->id])->get()->count() }}
 

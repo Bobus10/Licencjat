@@ -5,8 +5,14 @@
         use App\Http\Controllers\OrderController;
     @endphp
     <div class="row">
-        <a href="{{ route('orders.index') }}" class="float-right">
-            <button type="button" class="btn btn-success">powrót</button></a>
+        <div class="card-header d-flex align-items-center">
+            <a href="{{ route('orders.index') }}" class="float-right mr-2">
+                <button type="button" class="btn btn-success">
+                    <i class="fa-solid fa-chevron-left"></i> Powrót
+                </button>
+            </a>
+            <h1 class="mb-0 ml-2"> Zamówienie z </h1>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -38,7 +44,7 @@
                     @endphp
                 @endforeach
                 <tr>
-                    <td colspan="4" class="text-right"><strong>Dostawa:</strong></td>
+                    <td colspan="4" class="text-right"><strong><i class="fa-solid fa-truck-ramp-box"></i> Dostawa:</strong></td>
                     <td>{{ $shippment }}</td>
                 </tr>
                 <tr class="table-dark">

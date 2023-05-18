@@ -5,7 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('shop.product.add_title') }}</div>
+                    <div class="card-header"><a href="{{ route('products.index') }}">
+                        <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-chevron-left"></i> Powrót</button></a>
+                        {{ __('shop.product.add_title') }}
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
@@ -112,7 +116,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('shop.button.save') }}
+                                        <i class="fa-solid fa-floppy-disk"></i> {{ __('shop.button.save') }}
                                     </button>
                                 </div>
                             </div>

@@ -5,7 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('shop.product.show_title', ['name' => $products->name]) }}</div>
+                    <div class="card-header"><a href="{{ route('products.index') }}">
+                        <button type="submit" class="btn btn-primary">
+                        <i class="fa-solid fa-chevron-left"></i> Powrót</button></a>
+                        {{ __('shop.product.edit_title', ['name' => $products->name]) }}
+                    </div>
 
                     <div class="card-body">
 

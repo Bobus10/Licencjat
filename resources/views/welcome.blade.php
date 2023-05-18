@@ -52,7 +52,7 @@
                                     <div class="form-check">
                                         <label class="form-check-label" >
                                             <input class="form-check-input" type="checkbox" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, request('category', [])) ? 'checked' : '' }}/>
-                                            {{ $category->name }} id:{{ $category->id }}
+                                            {{ $category->name }}
                                         </label>
                                     {{-- <span class="badge badge-secondary float-end">120</span>name="filter[categories][]" id="category-{{ $category->id }}"for="category-{{ $category->id }}" --}}
                                     </div>
@@ -102,7 +102,7 @@
 
                     </div>
                 </div>
-                <button id="filter-button" type="submit" class="btn btn-white w-100 border border-secondary">{{ __('validation.attributes.filter') }}uj</button>
+                <button id="filter-button" type="submit" class="btn btn-white w-100 border border-secondary">{{ __('validation.attributes.filter') }}uj <i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
         <!-- sidebar -->
@@ -164,14 +164,14 @@
                                   </div>
                                 </div>
                                 <div class="col-xl-6 col-md-5 col-sm-7">
-                                    <h5>{{ $product->name }} ct_id:{{ $product->category_id }}</h5>
-                                    <div class="d-flex flex-row">
+                                    <h5>{{ $product->name }}</h5>
+                                    {{-- <div class="d-flex flex-row">
                                       <div class="text-warning mb-1 me-2">
                                         <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
                                         <span class="ms-1"> 3.5 </span>
                                       </div>
                                       <span class="text-muted"> 910 orders </span>
-                                    </div>
+                                    </div> --}}
                                     <p class="text mb-4 mb-md-0">
                                       {{ $product->description }}
                                     </p>

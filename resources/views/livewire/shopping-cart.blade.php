@@ -6,8 +6,8 @@
         @else
             <h2>W Koszyku są {{ $cartItems->count() }} przedmioty</h2>
         @endif
-        <a href="/"><button class="btn btn-primary ">Wróć do zakupów</button></a>
-        <a href="{{ route('shopping-cart.destroyAll') }}"><button class="btn btn-danger">Wyczyść koszyk</button></a>
+        <a href="/"><button class="btn btn-primary "><i class="fa-solid fa-chevron-left"></i> Wróć do zakupów</button></a>
+        <a href="{{ route('shopping-cart.destroyAll') }}"><button class="btn btn-danger">Wyczyść koszyk <i class="fa-solid fa-trash-can"></i></button></a>
     </div>
 {{-- , Auth()->user()->id --}}
     <div class="content">
@@ -30,7 +30,7 @@
                                         </a>
                                 </div>
                                 </div>
-                                <div class="col-xl-6 col-md-4 col-sm-7">
+                                <div class="col-xl-5 col-md-4 col-sm-7">
                                     <a href="{{ route('products.details', $item->product->id) }}" class="float-right text-decoration-none text-black">
                                     <h5>{{ $item->product->name }}</h5></a>
                                     <div class="d-flex justify-content-between">
@@ -41,16 +41,16 @@
                                         <span class="p-2">{{ $item->quantity }}</span>
                                         <button class="btn btn-primary" wire:click="incrementQty({{ $item->id }})"> + </button>
                                         <a href="{{ route('shopping-cart.destroy', $item->id) }}">
-                                            <button type="button" class="btn btn-close btn-close mx-2"></button></a>
+                                            <button type="button" class="btn btn-danger delete mx-2"><i class="fa-solid fa-trash-can"></i></button></a>
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-md-4 col-sm-5">
+                                <div class="col-xl-4 col-md-4 col-sm-5">
                                     <div class="d-flex flex-row align-items-center mb-1">
-                                        <h6 class="mb-1 me-1">Unit Price: {{ $item->product->price }} PLN</h6>
+                                        <h6 class="mb-1 me-1">Suma częściowa: {{ $item->product->price }} PLN</h6>
                                     </div>
                                     <div class="d-flex flex-row align-items-center mb-1">
                                     </div>
-                                    <h4  class="mb-1 me-1">Total Price: {{ $item->product->price * $item->quantity }} PLN</h4>
+                                    <h4  class="mb-1 me-1">Suma całkowita: {{ $item->product->price * $item->quantity }} PLN</h4>
                                 </div>
                             </div>
                         </div>
@@ -61,15 +61,15 @@
 
         </div>
             <div class="col col-lg-3 card border-secondary pb-2">
-                <div class="summary ">
-                    <h3 class="card-header">Summary</h3>
-                    <div class="summary-item"><span class="text">Subtotal: </span><span class="price"> {{ $sub_total }} PLN</span></div>
-                    <div class="summary-item"><span class="text">Discount: </span><span class="price"> {{ $tax }} PLN</span></div>
-                    <div class="summary-item"><span class="text">Shipping: </span><span class="price"> {{ $shipping }} PLN</span></div>
-                    <div class="summary-item"><span class="text-success">Total: </span><span class="price text-success"> {{ $total }} PLN</span></div>
+                <div class="text-justyfy ">
+                    <h3 class="card-header"> Podsumowanie </h3>
+                    <div class=""><span class="text">Suma częściowa: </span><span class="price"> {{ $sub_total }} PLN</span></div>
+                    <div class=""><span class="text">Zniżki: </span><span class="price"> {{ $tax }} PLN</span></div>
+                    <div class=""><span class="text">Dostawa: </span><span class="price"> {{ $shipping }} PLN</span></div>
+                    <div class=""><span class="text-success">Suma całkowita: </span><span class="price text-success"> {{ $total }} PLN</span></div>
                     <form action="{{ route('orders.store') }}" method="POST">
                         @csrf
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Checkout</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" htef="checkout.index"> Zapłać <i class="fa-solid fa-credit-card"></i></button>
                     </form>
                 </div>
             </div>

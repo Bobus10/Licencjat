@@ -19,6 +19,10 @@ return [
     'button' => [ // {{ __('shop.button.save') }}
         'save' => 'Zapisz',
         'add' => 'Dodaj',
+        'back_to_shopping' => '',
+        'clear_basket' => '',
+        'checkout' => '',
+        'filter' => 'filtruj',
     ],
     'product' => [ // {{ __('shop.product.add_title') }}
         'add_title' => 'Dodawanie produktu',
@@ -36,6 +40,17 @@ return [
     ],
     'user' => [
         'index_title' => 'Lista Użytkowników',
+    ],
+    'cart' => [
+        'in_the_basket' => '',
+        'summary' => '',
+        'shipping' => '',
+        'subtotal' => '',
+        'discount' => '',
+        'total' => '',
+        ],
+    'order' => [
+
     ],
 
 ];

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h1>{{ __('shop.user.index_title') }}</h1>
+                <h1>{{ __('shop.user.index_title') }} <i class="fa-solid fa-users"></i></h1>
             </div>
         </div>
         <table class="table table-hover">
@@ -28,7 +28,7 @@
                         <td>{{ $user->phone_number }}</td>
                         <td>
                             <a class="float-right">
-                                <button data-id="{{ $user->id }}" type="button" class="btn btn-danger delete"> X </button>
+                                <button data-id="{{ $user->id }}" type="button" class="btn btn-danger delete"> <i class="fa-solid fa-trash-can"></i> </button>
                             </a>
                         </td>
                     </tr>
