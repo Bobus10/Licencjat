@@ -39,6 +39,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $dates->links() }}
     </div>
 </div>
 @endsection

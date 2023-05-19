@@ -72,7 +72,7 @@
                                     aria-expanded="false"
                                     aria-controls="panelsStayOpen-collapseThree"
                                     >
-                                Price
+                                Cena
                             </button>
                             </h2>
                             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
@@ -109,7 +109,7 @@
         <!-- content -->
         <div class="col-lg-9">
           <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-            <strong class="d-block py-2">{{ $products->count() }} Produktów </strong>
+            <strong class="d-block py-2">{{ $filteredProductCount }} Produktów </strong>
                 {{-- <div class="ms-auto"> Widok:
                     <select class="form-select d-inline-block w-auto border pt-1" wire:model="pageSize">
                         <option value="5">5</option>
@@ -165,13 +165,12 @@
                                 </div>
                                 <div class="col-xl-6 col-md-5 col-sm-7">
                                     <h5>{{ $product->name }}</h5>
-                                    {{-- <div class="d-flex flex-row">
+                                    <div class="d-flex flex-row">
                                       <div class="text-warning mb-1 me-2">
-                                        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-                                        <span class="ms-1"> 3.5 </span>
+                                        <span class="ms-1">Dostępność: {{ $product->amount }} </span>
                                       </div>
-                                      <span class="text-muted"> 910 orders </span>
-                                    </div> --}}
+                                      <span class="text-muted"></span>
+                                    </div>
                                     <p class="text mb-4 mb-md-0">
                                       {{ $product->description }}
                                     </p>
@@ -182,10 +181,15 @@
                                     </div>
                                     <h6 class="text-success">Dostawa: {{ ShoppingCart::$shipping }}</h6>
                                     <div class="mt-4">
-                                        {{-- data-id="{{ $product->id }}" @guest disabled @endguest --}}
-                                        {{-- dodaj do koszyka --}}
-                                        <livewire:productlist :product="$product"/>
-
+                                        @auth
+                                            {{-- dodaj do koszyka --}}
+                                            <livewire:productlist :product="$product" disabled/>
+                                        @endauth
+                                        @guest
+                                            <a href="{{ route('login') }}"><button class="btn btn-success btn-sm">
+                                                <i class="fas fa-cart-plus"></i> Dodaj do koszyka
+                                            </button></a>
+                                        @endguest
                                     </div>
                                   </div>
                                 </div>
@@ -196,131 +200,10 @@
                       @endforeach
                     </div>
                     {{  $products->appends(request()->query())->links()  }}
-
         </div>
       </div>
     </div>
-
-
-  <!-- Footer -->
-  {{-- <footer class="text-center text-lg-start text-muted bg-primary mt-3">
-    <!-- Section: Links  -->
-    <section class="">
-      <div class="container text-center text-md-start pt-4 pb-4">
-        <!-- Grid row -->
-        <div class="row mt-3">
-          <!-- Grid column -->
-          <div class="col-12 col-lg-3 col-sm-12 mb-2">
-            <!-- Content -->
-            <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
-              MDB
-            </a>
-            <p class="mt-1 text-white">
-              © 2023 Copyright: MDBootstrap.com
-            </p>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-6 col-sm-4 col-lg-2">
-            <!-- Links -->
-            <h6 class="text-uppercase text-white fw-bold mb-2">
-              Store
-            </h6>
-            <ul class="list-unstyled mb-4">
-              <li><a class="text-white-50" href="#">About us</a></li>
-              <li><a class="text-white-50" href="#">Find store</a></li>
-              <li><a class="text-white-50" href="#">Categories</a></li>
-              <li><a class="text-white-50" href="#">Blogs</a></li>
-            </ul>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-6 col-sm-4 col-lg-2">
-            <!-- Links -->
-            <h6 class="text-uppercase text-white fw-bold mb-2">
-              Information
-            </h6>
-            <ul class="list-unstyled mb-4">
-              <li><a class="text-white-50" href="#">Help center</a></li>
-              <li><a class="text-white-50" href="#">Money refund</a></li>
-              <li><a class="text-white-50" href="#">Shipping info</a></li>
-              <li><a class="text-white-50" href="#">Refunds</a></li>
-            </ul>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-6 col-sm-4 col-lg-2">
-            <!-- Links -->
-            <h6 class="text-uppercase text-white fw-bold mb-2">
-              Support
-            </h6>
-            <ul class="list-unstyled mb-4">
-              <li><a class="text-white-50" href="#">Help center</a></li>
-              <li><a class="text-white-50" href="#">Documents</a></li>
-              <li><a class="text-white-50" href="#">Account restore</a></li>
-              <li><a class="text-white-50" href="#">My orders</a></li>
-            </ul>
-          </div>
-          <!-- Grid column -->
-
-          <!-- Grid column -->
-          <div class="col-12 col-sm-12 col-lg-3">
-            <!-- Links -->
-            <h6 class="text-uppercase text-white fw-bold mb-2">Newsletter</h6>
-            <p class="text-white">Stay in touch with latest updates about our products and offers</p>
-            <div class="input-group mb-3">
-              <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
-              <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-                Join
-              </button>
-            </div>
-          </div>
-          <!-- Grid column -->
-        </div>
-        <!-- Grid row -->
-      </div>
-    </section>
-    <!-- Section: Links  -->
-
-    <div class="">
-      <div class="container">
-        <div class="d-flex justify-content-between py-4 border-top">
-          <!--- payment --->
-          <div>
-            <i class="fab fa-lg fa-cc-visa text-white"></i>
-            <i class="fab fa-lg fa-cc-amex text-white"></i>
-            <i class="fab fa-lg fa-cc-mastercard text-white"></i>
-            <i class="fab fa-lg fa-cc-paypal text-white"></i>
-          </div>
-          <!--- payment --->
-
-          <!--- language selector --->
-          <div class="dropdown dropup">
-            <a class="dropdown-toggle text-white" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
-
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
-              </li>
-            </ul>
-          </div>
-          <!--- language selector --->
-        </div>
-      </div>
-    </div>
-  </footer> --}}
-  <!-- Footer -->
-  @livewireScripts
+@livewireScripts
 @endsection
 @section('javascript')
     const WELCOME_DATA ={
@@ -329,21 +212,3 @@
     }
 @endsection
 @vite(['resources/js/welcome.js'])
-{{-- <div class="p-3 text-center bg-white border-bottom">
-    <div class="container">
-      <div class="row gy-3">
-        <div class="col-lg-5 col-md-12 col-12">
-          <div class="input-group float-center">
-            <div class="form-outline">
-              <input type="search" id="form1" class="form-control" />
-              <label class="form-label" for="form1">Search</label>
-            </div>
-            <button type="button" class="btn btn-primary shadow-0">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-        <!-- Right elements -->
-      </div>
-    </div>
-  </div> --}}

@@ -1,26 +1,36 @@
-$('.delete').on("click",function(){
-    Swal.fire({
-      title: messagesDelete[0],
-      text: messagesDelete[1],
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: messagesDelete[2],
-      cancelButtonText: messagesDelete[3]
+$('button.singleDlt').on('click', function(product){
+    var productName = $(this).attr('data-product-name');
+     Swal.fire({
+         position: 'top-end',
+         icon: 'success',
+         title: 'Usunięto produkt '+ productName,
+         showConfirmButton: false,
+         timer: 1500
+       })
+ });
+ $('button.allDlt').on('click', function(product){
+     Swal.fire({
+         position: 'top-end',
+         icon: 'success',
+         title: 'Wyczyszczono cały koszyk',
+         showConfirmButton: false,
+         timer: 1500
+       })
+ });
+$('button.checkout-info').on('click', function(product){
+    var productName = $(this).attr('data-product-name');
+      Swal.fire({
+        title: 'Dokonano zakupu!',
+        showCancelButton: false,
+        confirmButtonColor: '#008000',
+        cancelButtonColor: '#0d6efd',
+        confirmButtonText: 'Przejdz do sklepu',
+        cancelButtonText: 'Przejdz do zamówień',
       }).then((result) => {
         if (result.isConfirmed) {
-          $.ajax({
-            method: "delete",
-            url: deleteUrl + $(this).data("id"),
-          })
-          .done(function( response ) {
-            Swal.fire( messagesDelete[4], )
-            window.location.reload();
-         })
-          .fail(function( data ) {
-            Swal.fire( messagesDelete[5], data.responseJSON.message, data.responseJSON.status)
-          });
-        }
-    })
-  });
+            window.location.href = '/';
+        } else if (result.isDenied) {
+            window.location.href = '/orders';
+          }
+      })
+});

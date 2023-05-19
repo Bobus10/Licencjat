@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
         //users section
         Route::get('/users/list', [UserController::class, 'index'])->name('users.index');
-        Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::get('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
     //koszyk
     Route::get('/cart', [CartController::class, 'index'])->name('shopping-cart');

@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('products.index',[
-            'products' => Product::paginate(10)
+            'products' => Product::paginate(25)
         ]);
     }
 
@@ -90,21 +90,12 @@ class ProductController extends Controller
         $product = Product::where('id',$id)->first();
         $product -> delete();
         return redirect()->back();
-        // try {
-        //     //throw new Exception(); //zakomentować by działało
-        //     $product -> delete();
-        //     return redirect()->back();
-        // } catch (Exception $e) {
-        //     return response() -> $e->getMessage()->setStatusCode(500);
-        // }
-
     }
     public function details(Product $product)
     {
         return view('products.details',[
             'products' => $product,
             'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
-            //'rproducts' => $product->where('category_id', $product->category_id)->inRandomOrder()->limit(4),
         ]);
     }
 }

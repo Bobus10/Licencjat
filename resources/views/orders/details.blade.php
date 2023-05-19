@@ -3,6 +3,7 @@
 <div class="container">
     @php
         use App\Http\Controllers\OrderController;
+        use Illuminate\Http\Request;
     @endphp
     <div class="row">
         <div class="card-header d-flex align-items-center">
@@ -11,7 +12,7 @@
                     <i class="fa-solid fa-chevron-left"></i> Powrót
                 </button>
             </a>
-            <h1 class="mb-0 ml-2"> Zamówienie z </h1>
+            <h3 class="mb-0 ml-2"> Zamówienie z {{ \Illuminate\Support\Facades\Request::segment(2) }}</h3>
         </div>
         <table class="table table-hover">
             <thead>

@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::paginate(3)
+            'users' => User::paginate(10),
         ]);
     }
 
@@ -61,16 +61,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        try {
-            //throw new Exception();//zakomentować by działało
-            $user->delete();
-            return response()->json(['status' =>'success']);
-        } catch (Exception $e) {
-            return response()->json(['status' =>'error'
-            ,'message' => $e->getMessage()])->setStatusCode(500);
-        }
+        $product = User::where('id',$id)->first();
+        $product -> delete();
+        return redirect()->back();
     }
 
 }

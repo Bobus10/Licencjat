@@ -27,8 +27,8 @@
                         <td>{{ $user->last_name }}</td>
                         <td>{{ $user->phone_number }}</td>
                         <td>
-                            <a class="float-right">
-                                <button data-id="{{ $user->id }}" type="button" class="btn btn-danger delete"> <i class="fa-solid fa-trash-can"></i> </button>
+                            <a href="{{ route('users.destroy', $user->id) }}" class="float-right">
+                                <button type="button" class="btn btn-danger delete"> <i class="fa-solid fa-trash-can"></i> </button>
                             </a>
                         </td>
                     </tr>
@@ -38,17 +38,3 @@
         {{ $users->links() }}
     </div>
 @endsection
-@section('javascript')
-    const deleteUrl = "{{ url('users') }}/";
-    const messagesDelete=["{{ __('shop.messages.delete.confirm') }}",
-    "{{ __('shop.messages.delete.text') }}",
-    "{{ __('shop.messages.delete.confirm_button') }}",
-    "{{ __('shop.messages.delete.cancel_button') }}",
-    "{{ __('shop.messages.delete.done') }}",
-    "{{ __('shop.messages.delete.fail') }}"];
-
-@endsection
-@vite(['resources/js/delete.js'])
-{{-- @section('js-files')
-    <script src="{{ asset('js/delete.js') }}"></script>
-@endsection --}}
