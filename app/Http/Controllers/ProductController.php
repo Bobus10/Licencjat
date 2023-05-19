@@ -14,10 +14,46 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $categories = $request->input('category', []);
+        $sort = $request->input('sort');
+        $products = Product::query();
+
+        if (!empty($categories)) {//filtr kategori
+            $products->whereIn('category_id', $categories);
+        }
+
+        $filters = [[
+                'name' => 'id',
+                'label' => '#',]
+            ,[
+                'name' => 'name',
+                'label' => __('validation.attributes.name'),]
+            ,[
+                'name' => 'amount',
+                'label' => __('validation.attributes.amount'),]
+            ,[
+                'name' => 'price',
+                'label' => 'Cena',
+            ]
+        ];
+        foreach ($filters as $filter) {
+            $filterValue = $request->input($filter['name']);
+
+            if ($filterValue === 'min') {
+                $products->orderBy($filter['name'], 'asc');
+            } elseif ($filterValue === 'max') {
+                $products->orderBy($filter['name'], 'desc');
+            }
+        }
+
+        $products = $products->paginate(25);
+
         return view('products.index',[
-            'products' => Product::paginate(25)
+            'products' => $products,
+            'categories' => ProductCategory::orderBy('name', 'asc')->get(),
+            'filters' => $filters,
         ]);
     }
 
