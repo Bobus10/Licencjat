@@ -17,14 +17,14 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $categories = $request->input('category', []);
-        $sort = $request->input('sort');
         $products = Product::query();
 
         if (!empty($categories)) {//filtr kategori
             $products->whereIn('category_id', $categories);
         }
 
-        $filters = [[
+        $filters = [
+            [
                 'name' => 'id',
                 'label' => '#',]
             ,[

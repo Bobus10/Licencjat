@@ -7,14 +7,12 @@
             <div class="col-6">
                 <h1>{{ __('shop.product.index_title') }} <i class="fa-solid fa-rectangle-list"></i></h1>
             </div>
-
             <div class="col-6 text-right">
                 <a href="{{ route('products.create') }}">
                     <button type="button" class="btn btn-primary">{{ __('shop.button.add') }} <i class="fa-solid fa-plus"></i></button>
                 </a>
                 <button id="filter-button" type="submit" class="btn btn-white border border-secondary">{{ __('validation.attributes.filter') }}uj <i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-
         </div>
         <div class="row">
             <div class="col-12">

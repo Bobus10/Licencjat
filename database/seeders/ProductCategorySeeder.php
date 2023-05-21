@@ -14,9 +14,9 @@ class ProductCategorySeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['name' => 'Akcesoria'],
+            // ['name' => 'Akcesoria'],
             ['name' => 'Smartfony'],
-            ['name' => 'Smartwatche'],
+            // ['name' => 'Smartwatche'],
             // ['name' => 'Ochrona telefonu'],
             ['name' => 'Laptopy'],
             ['name' => 'Komputery'],

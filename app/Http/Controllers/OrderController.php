@@ -25,7 +25,7 @@ class OrderController extends Controller
 
         $dates = Order::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS date"))
             ->where('user_id', $user_id)
-            ->groupBy('date')
+            ->groupBy('date')->orderBy('date', 'desc')
             ->get()
             ->pluck('date')
             ->map(function ($datetime) {
