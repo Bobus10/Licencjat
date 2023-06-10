@@ -172,4 +172,4 @@
         addToCart: '{{ url('cart') }}/',
     }
 @endsection
-@vite(['resources/js/welcome.js'])
+@vite(['resources/js/buttons.js'])
