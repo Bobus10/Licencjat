@@ -10,7 +10,7 @@ use App\Models\ProductCategory;
 
 class WelcomeController extends Controller
 {
-    public $pageSize=10;
+    public $pageSize=5;
 
     public function index(Request $request)
     {

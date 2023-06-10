@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
 use Livewire\Component;
 use App\Models\ShoppingCart as Cart;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +28,21 @@ class ShoppingCart extends Component
             'shipping' => $this->shipp,
         ]);
     }
+
+    public function destroyAll(){
+        $user_id = Auth::user()->id;
+        Cart::where('user_id', $user_id)->delete();
+        return redirect()->back();
+    }
+
+    public function decrementQty($id)
+    {
+        $cart = Cart::find($id);
+        if($cart && $cart->quantity > 1){
+            $cart->decrement('quantity');
+            $this->getCartItemCount();
+        }
+    }
     public function incrementQty($id)
     {
         $cart = Cart::find($id);
@@ -37,22 +51,6 @@ class ShoppingCart extends Component
             $this->getCartItemCount();
         }
     }
-
-    public function decrementQty($id)
-    {
-        $cart = Cart::whereId($id)->first();
-        if($cart && $cart->quantity > 1){
-            $cart->decrement('quantity');
-            $this->getCartItemCount();
-        }
-    }
-
-    public function destroyAll(){
-        $user_id = Auth::user()->id;
-        Cart::where('user_id', $user_id)->delete();
-        return redirect()->back();
-    }
-
     public function destroy($id){
         $cart = Cart::find($id);
         $cart -> delete();

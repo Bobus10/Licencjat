@@ -25,18 +25,18 @@
                                 <div class="row g-0">
                                     <div class="col-xl-3 col-md-4 d-flex justify-content-center">
                                     <div class="bg-image hover-zoom ripple rounded ripple-surface me-md-3 mb-3 mb-md-0">
-                                            <a href="{{ route('products.details', $item->product->id) }}" class="float-right">
+                                            {{-- <a href="{{ route('products.details', $item->product->id) }}" class="float-right"> --}}
                                         @if(!is_null($item->product->image_path))
                                             <img src="{{ asset('storage/' . $item->product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                                         @else
                                             <img src={{ $defaultImageUrl }} class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                                         @endif
-                                            </a>
+                                            {{-- </a> --}}
                                     </div>
                                     </div>
                                     <div class="col-xl-5 col-md-4 col-sm-7">
-                                        <a href="{{ route('products.details', $item->product->id) }}" class="float-right text-decoration-none text-black">
-                                        <h5>{{ $item->product->name }}</h5></a>
+                                        {{-- <a href="{{ route('products.details', $item->product->id) }}" class="float-right text-decoration-none text-black"></a> --}}
+                                        <h5>{{ $item->product->name }}</h5>
                                         <div class="mt-3 d-flex">
                                             <div class="btn-group me-2" role="group" aria-label="First group">
                                                 <button type="button" class="btn btn-primary" wire:click="decrementQty({{ $item->id }})"> - </button>
@@ -73,7 +73,7 @@
                         <div class=""><span class="text-success">Całkowita wartość: </span><span class="price text-success"> {{ $total }} PLN</span></div>
                         <form action="{{ route('orders.store') }}" method="POST">
                             @csrf
-                        <button type="submit" class="btn btn-primary btn-lg btn-block checkout-info"> Zapłać <i class="fa-solid fa-credit-card"></i></button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block checkout-info"> Zapłać <i class="fa-solid fa-credit-card"></i></button>
                         </form>
                     </div>
                 </div>

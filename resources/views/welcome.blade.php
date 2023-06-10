@@ -100,9 +100,6 @@
             <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
                 <strong class="d-block py-2">{{ $filteredProductCount }} Produktów </strong>
             </header>
-            <div id="product_wrapper" wire:target="pageSizeUpdated, updatedFilters" wire:loading>
-            Loading...
-            </div>
             <div class="row justify-content-center mb-3">
                 @foreach ($products as $product)
                     <div class="col-md-12">
@@ -135,7 +132,7 @@
                                         </div>
                                         <p class="text mb-4 mb-md-0">
                                             @php
-                                                $opis = nl2br($product->description);
+                                                $opis = nl2br($product->description);//dodaje w opisie przejście do następnej linni
                                             @endphp
                                             {!! $opis !!}
                                         </p>
@@ -148,7 +145,7 @@
                                         <div class="mt-4">
                                             @auth
                                                 {{-- dodaj do koszyka --}}
-                                                <livewire:productlist :product="$product" disabled/>
+                                                <livewire:productlist :product="$product"/>
                                             @endauth
                                             @guest
                                                 <a href="{{ route('login') }}"><button class="btn btn-success btn-sm">

@@ -48,7 +48,7 @@ class ProductController extends Controller
             }
         }
 
-        $products = $products->paginate(25);
+        $products = $products->paginate(15);
 
         return view('products.index',[
             'products' => $products,
@@ -127,11 +127,11 @@ class ProductController extends Controller
         $product -> delete();
         return redirect()->back();
     }
-    public function details(Product $product)
-    {
-        return view('products.details',[
-            'products' => $product,
-            'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
-        ]);
-    }
+    // public function details(Product $product)
+    // {
+    //     return view('products.details',[
+    //         'products' => $product,
+    //         'defaultImageUrl' => 'https://via.placeholder.com/240x240/5fa9f8/efefef',
+    //     ]);
+    // }
 }

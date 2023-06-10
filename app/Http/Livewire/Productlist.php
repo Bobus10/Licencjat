@@ -11,13 +11,10 @@ class Productlist extends Component
     public $product;
     public function render()
     {
-        $product = Product::get();
-
         return view('livewire.productlist', [
-            'product' => $product,
+            'product' => Product::get(),
         ]);
     }
-
     public function addToCart($id)
     {
         if (auth()->user()) {
@@ -26,10 +23,6 @@ class Productlist extends Component
                 'product_id' => $id,
             ];
             Cart::updateOrCreate($data);
-
-            $this->emit('updateCartCount');
-
-            session()->flash('success', 'Product added to the cart successfully');
         } else {
             return redirect(route('login'));
         }

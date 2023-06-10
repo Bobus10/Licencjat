@@ -66,36 +66,30 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @can('isAdmin')
-                                        <a class="dropdown-item" href="/users/list">
+                                        <a class="dropdown-item" href="{{ route('users.index') }}">
                                             <i class="fa-solid fa-users"></i> {{ __('shop.user.index_title') }}</a>
                                         <a class="dropdown-item" href="{{ route('products.index') }}">
                                             <i class="fa-solid fa-rectangle-list"></i> {{ __('shop.product.index_title') }} </a>
                                     @endcan
+
                                         <a class="dropdown-item" href="{{ route('orders.index') }}">
                                             <i class="fa-solid fa-truck"></i> Zamówienia </a>
+
                                         <hr class="dropdown-divider">
-
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }} <i class="fa-solid fa-right-from-bracket"></i>
-                                        </a>
-
+                                            document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }} <i class="fa-solid fa-right-from-bracket"></i></a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="/cart">Ulubione</a>
-                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link position-relative" href="{{ route('shopping-cart') }}"><i class="fa-solid fa-cart-shopping"></i>
                                     <span class="position-absolute top-75 start-100 translate-middle badge rounded-pill bg-success">
                                         {{ $cartItems = ShoppingCart::with('product')->where(['user_id'=>auth()->user()->id])->get()->count() }}
-
                                     </span>
                                 </a>
-{{-- <livewire:cart-counter/> --}}
                             </li>
                         @endguest
                     </ul>

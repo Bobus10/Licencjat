@@ -2,4 +2,4 @@
 @section('content')
     <livewire:shopping-cart />
 @endsection
-@vite(['resources/js/delete.js'])
+@vite(['resources/js/welcome.js'])
