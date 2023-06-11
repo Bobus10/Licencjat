@@ -5,47 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\ShoppingCart;
-// use App\Http\Livewire\ShoppingCart as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $user_id = Auth::id();
-        $perPage = 25; // Liczba wyników na stronę
+        $perPage = 15;
+        $orders = [];
 
         $dates = Order::select(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') AS date"))
             ->where('user_id', $user_id)
             ->groupBy('date')->orderBy('date', 'desc')
-            ->get()
-            ->pluck('date')
-            ->map(function ($datetime) {
-                return Carbon::parse($datetime)->toDateTimeString();
-            })
-            ->unique();
+            ->paginate($perPage);
 
-        $page = $request->query('page', 1); // Pobranie numeru bieżącej strony
-        $offset = ($page - 1) * $perPage;
-        $pagedDates = $dates->slice($offset, $perPage);
+        foreach ($dates as $date) {
+            $datetime = Carbon::parse($date->date)->toDateTimeString();
 
-        $orders = [];
-
-        foreach ($pagedDates as $datetime) {
             $dateOrders = Order::where('user_id', $user_id)
                 ->whereBetween('created_at', [
                     Carbon::parse($datetime)->startOfMinute(),
                     Carbon::parse($datetime)->endOfMinute(),
-                ])
-                ->get()->filter(function ($order) use ($datetime) {
+                ])->get()->filter(function ($order) use ($datetime) {
                     return Carbon::parse($order->created_at)->toDateTimeString() === $datetime;
                 });
 
@@ -60,41 +45,19 @@ class OrderController extends Controller
             ];
         }
 
-        $datesPaginated = new LengthAwarePaginator(
-            $pagedDates,
-            $dates->count(),
-            $perPage,
-            $page,
-            [
-                'path' => $request->url(),
-                'query' => $request->query(),
-            ]
-        );
-
         return view("orders.order", [
-            'dates' => $datesPaginated,
+            'dates' => $dates,
             'orders' => $orders,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $user = Auth::user();
         $cartItems = ShoppingCart::where('user_id', $user->id)->with('product')->get();
 
         foreach($cartItems as $item){
-            $productz = $item->product_id;
+            $productId = $item->product_id;
             $price = $item->product->price;
             $quantity = $item->quantity;
 
@@ -106,7 +69,7 @@ class OrderController extends Controller
 
             Order::create([
                 'user_id' => $user->id,
-                'product_id' => $productz,
+                'product_id' => $productId,
                 'price' => $price,
                 'quantity' => $quantity,
             ]);
@@ -114,38 +77,6 @@ class OrderController extends Controller
 
         ShoppingCart::where('user_id', $user->id)->delete();
         return redirect(route('orders.index'));
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
-    {
-        //
     }
 
     public function showOrders($datetime)

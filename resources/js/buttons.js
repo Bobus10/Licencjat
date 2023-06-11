@@ -14,8 +14,8 @@ $(function() {
             }
           })
     });
+
     $('button.incrementQty').on('click', function(product){
-        // event.preventDefault();
          Swal.fire({
              position: 'top-end',
              icon: 'success',
@@ -24,8 +24,8 @@ $(function() {
              timer: 1500
            })
      });
+
      $('button.decrementQty').on('click', function(product){
-        // event.preventDefault();
          Swal.fire({
              position: 'top-end',
              icon: 'success',
@@ -34,6 +34,7 @@ $(function() {
              timer: 1500
            })
      });
+
      $('button.singleDlt').on('click', function(product){
         var productName = $(this).attr('data-product-name');
          Swal.fire({
@@ -44,6 +45,7 @@ $(function() {
              timer: 1500
            })
      });
+
      $('button.allDlt').on('click', function(product){
          Swal.fire({
              position: 'top-end',
@@ -53,23 +55,6 @@ $(function() {
              timer: 1500
            })
      });
-    $('button.checkout-info').on('click', function(product){
-        var productName = $(this).attr('data-product-name');
-          Swal.fire({
-            title: 'Dokonano zakupu!',
-            showCancelButton: false,
-            confirmButtonColor: '#008000',
-            cancelButtonColor: '#0d6efd',
-            confirmButtonText: 'Przejdz do sklepu',
-            cancelButtonText: 'Przejdz do zamówień',
-          }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '/';
-            } else if (result.isDenied) {
-                window.location.href = '/orders';
-              }
-          })
-    });
 
     function getImageUrl(product){
         if(!!product.image_path){
