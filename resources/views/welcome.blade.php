@@ -11,15 +11,10 @@
           <!-- sidebar -->
         <div class="col-lg-3">
             <!-- Toggle button -->
-            <button
-                    class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
-                    type="button"
-                    data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
-            <span>Show filter</span>
+            <button class="btn btn-outline-secondary mb-3 w-100 d-lg-none" type="button"
+                    data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span>Show filter</span>
             </button>
             <!-- Collapsible wrapper  -->
             <form action="{{ url('/') }}" method="GET">
@@ -27,21 +22,16 @@
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item" id="products_wrapper">
                             <h2 class="accordion-header" id="headingTwo">
-                                <button
-                                        class="accordion-button text-dark bg-light"
-                                        type="button"
-                                        data-mdb-toggle="collapse"
-                                        data-mdb-target="#panelsStayOpen-collapseTwo"
-                                        aria-expanded="true"
-                                        aria-controls="panelsStayOpen-collapseTwo">
-                                Kategorie
-                                </button>
+                                <button class="accordion-button text-dark bg-light" type="button"
+                                        data-mdb-toggle="collapse" data-mdb-target="#panelsStayOpen-collapseTwo"
+                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                                    Kategorie</button>
                             </h2>
                             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
                                 <div class="accordion-body">
                                 @foreach ( $categories as $category )
                                     <div>
-                                        <!-- Checked checkbox -->
+                                        <!-- Category filter -->
                                         <div class="form-check">
                                             <label class="form-check-label" >
                                                 <input class="form-check-input" type="checkbox" name="category[]" value="{{ $category->id }}" {{ in_array($category->id, request('category', [])) ? 'checked' : '' }}/>
@@ -53,18 +43,13 @@
                                 </div>
                             </div>
                         </div>
-                                                {{-- Filtr cena --}}
+                            {{-- Price filter --}}
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
-                            <button
-                                    class="accordion-button text-dark bg-light"
-                                    type="button"
-                                    data-mdb-toggle="collapse"
-                                    data-mdb-target="#panelsStayOpen-collapseThree"
-                                    aria-expanded="false"
-                                    aria-controls="panelsStayOpen-collapseThree">
-                                Cena
-                            </button>
+                            <button class="accordion-button text-dark bg-light" type="button"
+                                    data-mdb-toggle="collapse" data-mdb-target="#panelsStayOpen-collapseThree"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                    Cena </button>
                             </h2>
                             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
                                 <div class="accordion-body">

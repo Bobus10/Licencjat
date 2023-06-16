@@ -1,8 +1,5 @@
 <?php
 
-
-use Livewire\Livewire;
-use App\Http\Livewire\Productlist;
 use App\Http\Livewire\ShoppingCart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +10,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Livewire\Filters;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +21,8 @@ use App\Http\Livewire\Filters;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
+//main page
 Route::get('/', [WelcomeController::class, 'index']);
-//Route::get('/', WelcomeController::class);
-//Livewire::component('filters', Filters::class);
-//Livewire::component('productlist', ProductList::class);
 
 Route::middleware(['auth'])->group(function (){
     Route::middleware(['can:isAdmin'])->group(function (){
@@ -48,20 +39,20 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/users/list', [UserController::class, 'index'])->name('users.index');
         Route::get('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
-    //koszyk
+    //cart
     Route::get('/cart', [CartController::class, 'index'])->name('shopping-cart');
     Route::get('/cart/all', [ShoppingCart::class, 'destroyAll'])->name('shopping-cart.destroyAll');
     Route::get('/cart/{item}', [ShoppingCart::class, 'destroy'])->name('shopping-cart.destroy');
-    //zamówienia
+    //orders
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/{datetime}', [OrderController::class, 'showOrders'])->name('orders.details');
-    //finalizacja zamowienia
+    //checkout
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-    //strona po zalogowaniu
+    //home page
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
-
+//product details not implemented
 Route::get('/details/{product}', [ProductController::class, 'details'])->name('products.details');
 
 Auth::routes();

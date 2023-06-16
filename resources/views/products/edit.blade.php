@@ -15,7 +15,6 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('products.update', $products->id) }}" enctype="multipart/form-data">
                             @csrf
-                            {{-- @method('PUT') --}}
 
                             <div class="row mb-3">
                                 <label for="name"

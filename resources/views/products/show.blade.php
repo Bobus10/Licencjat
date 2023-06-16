@@ -45,13 +45,13 @@
                             <div class="col-md-6">
                                 <input id="price" type="number" step="0.01" min="0"
                                     class="form-control" name="price" value="{{ $products->price }}" disabled>
-
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="category"
-                                class="col-md-4 col-form-label text-md-end">{{ __('shop.product.fields.categories') }}</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-end">
+                                {{ __('shop.product.fields.categories') }}
+                            </label>
 
                             <div class="col-md-6">
                                 <select class="form-control" id="category" name="category_id" disabled>
@@ -65,20 +65,20 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="image"
-                                class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.image') }}</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-end">
+                                {{ __('validation.attributes.image') }}
+                            </label>
 
                             <div class="col-md-6">
                                 @if(!is_null($products->image_path))
-                                        <img src="{{ asset('storage/' . $products->image_path) }}"
+                                    <img src="{{ asset('storage/' . $products->image_path) }}"
                                         class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
-                                        @else
-                                        <img src="https://via.placeholder.com/240x240/5fa9f8/efefef"
-                                            class="img-fluid mx-auto d-block" alt="Card image cap">
-                                        @endif
+                                @else
+                                    <img src="https://via.placeholder.com/240x240/5fa9f8/efefef"
+                                        class="img-fluid mx-auto d-block" alt="Card image cap">
+                                @endif
                             </div>
                         </div>
-
 
                     </div>
                 </div>

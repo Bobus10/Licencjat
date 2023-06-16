@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProductCategory;
-use Exception;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +18,7 @@ class ProductController extends Controller
         $categories = $request->input('category', []);
         $products = Product::query();
 
-        if (!empty($categories)) {//filtr kategori
+        if (!empty($categories)) {
             $products->whereIn('category_id', $categories);
         }
 
@@ -108,7 +107,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpsertProductRequest $request, Product $product): RedirectResponse
+    public function update(UpsertProductRequest $request, Product $product)
     {
         $product->fill($request->validated());
         if($request->hasFile('image')){
