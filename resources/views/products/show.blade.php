@@ -26,7 +26,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('validation.attributes.description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" maxlength="1500" class="form-control" name="description" disabled>{{ $products->description }}</textarea>
+                                <textarea id="description" maxlength="2000" class="form-control" name="description" disabled>{{ $products->description }}</textarea>
                             </div>
                         </div>
 

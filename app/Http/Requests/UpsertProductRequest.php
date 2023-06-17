@@ -23,7 +23,7 @@ class UpsertProductRequest extends FormRequest
     {
         return [
             'name' =>'required|max:500',
-            'description' =>'required|max:1500',
+            'description' =>'required|max:2000',
             'price' =>'required|numeric|min:0',
             'amount' =>'required|integer|min:0',
             'image' =>'image|mimes:jpeg,jpg,png',
