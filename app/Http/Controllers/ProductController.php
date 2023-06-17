@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $categories = $request->input('category', []);
         $products = Product::query();
-
+ 
         if (!empty($categories)) {
             $products->whereIn('category_id', $categories);
         }
@@ -38,7 +38,7 @@ class ProductController extends Controller
             ]
         ];
         foreach ($filters as $filter) {
-            $filterValue = $request->input($filter['name']);
+            $filterValue = $request->input( $filter['name'] );
 
             if ($filterValue === 'min') {
                 $products->orderBy($filter['name'], 'asc');
