@@ -5,7 +5,7 @@ Sklep internetowy stworzony w frameworku do PHP Laravel.
 - opis
 - opis
 
-https://github.com/Bobus10/Licencjat/issues/1#issue-1791685872
+![obraz_2023-07-06_163158762](https://user-images.githubusercontent.com/78688548/251482901-35d220c1-e691-4e42-b3cd-e25a15b9cafb.png)
 
 ## Learning Laravel
 
